@@ -1,0 +1,11 @@
+C:\Users\mypc\source\repos\datatable\bin\Debug\netcoreapp3.0\datatable.exe
+C:\Users\mypc\source\repos\datatable\bin\Debug\netcoreapp3.0\datatable.deps.json
+C:\Users\mypc\source\repos\datatable\bin\Debug\netcoreapp3.0\datatable.runtimeconfig.json
+C:\Users\mypc\source\repos\datatable\bin\Debug\netcoreapp3.0\datatable.runtimeconfig.dev.json
+C:\Users\mypc\source\repos\datatable\bin\Debug\netcoreapp3.0\datatable.dll
+C:\Users\mypc\source\repos\datatable\bin\Debug\netcoreapp3.0\datatable.pdb
+C:\Users\mypc\source\repos\datatable\obj\Debug\netcoreapp3.0\datatable.csprojAssemblyReference.cache
+C:\Users\mypc\source\repos\datatable\obj\Debug\netcoreapp3.0\datatable.AssemblyInfoInputs.cache
+C:\Users\mypc\source\repos\datatable\obj\Debug\netcoreapp3.0\datatable.AssemblyInfo.cs
+C:\Users\mypc\source\repos\datatable\obj\Debug\netcoreapp3.0\datatable.dll
+C:\Users\mypc\source\repos\datatable\obj\Debug\netcoreapp3.0\datatable.pdb

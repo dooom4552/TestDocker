@@ -1,0 +1,15 @@
+C:\Users\mypc\source\repos\MyTestEchoKyzBot\bin\Debug\netcoreapp3.1\MyTestEchoKyzBot.exe
+C:\Users\mypc\source\repos\MyTestEchoKyzBot\obj\Debug\netcoreapp3.1\MyTestEchoKyzBot.csprojAssemblyReference.cache
+C:\Users\mypc\source\repos\MyTestEchoKyzBot\obj\Debug\netcoreapp3.1\MyTestEchoKyzBot.AssemblyInfoInputs.cache
+C:\Users\mypc\source\repos\MyTestEchoKyzBot\obj\Debug\netcoreapp3.1\MyTestEchoKyzBot.AssemblyInfo.cs
+C:\Users\mypc\source\repos\MyTestEchoKyzBot\bin\Debug\netcoreapp3.1\MyTestEchoKyzBot.deps.json
+C:\Users\mypc\source\repos\MyTestEchoKyzBot\bin\Debug\netcoreapp3.1\MyTestEchoKyzBot.runtimeconfig.json
+C:\Users\mypc\source\repos\MyTestEchoKyzBot\bin\Debug\netcoreapp3.1\MyTestEchoKyzBot.runtimeconfig.dev.json
+C:\Users\mypc\source\repos\MyTestEchoKyzBot\bin\Debug\netcoreapp3.1\MyTestEchoKyzBot.dll
+C:\Users\mypc\source\repos\MyTestEchoKyzBot\bin\Debug\netcoreapp3.1\MyTestEchoKyzBot.pdb
+C:\Users\mypc\source\repos\MyTestEchoKyzBot\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\mypc\source\repos\MyTestEchoKyzBot\bin\Debug\netcoreapp3.1\Telegram.Bot.dll
+C:\Users\mypc\source\repos\MyTestEchoKyzBot\obj\Debug\netcoreapp3.1\MyTestEchoKyzBot.csproj.CopyComplete
+C:\Users\mypc\source\repos\MyTestEchoKyzBot\obj\Debug\netcoreapp3.1\MyTestEchoKyzBot.dll
+C:\Users\mypc\source\repos\MyTestEchoKyzBot\obj\Debug\netcoreapp3.1\MyTestEchoKyzBot.pdb
+C:\Users\mypc\source\repos\MyTestEchoKyzBot\bin\Debug\netcoreapp3.1\MihaZupan.HttpToSocks5Proxy.dll

@@ -1,0 +1,7 @@
+C:\Users\mypc\source\repos\Kiji\obj\Debug\Kiji.csprojAssemblyReference.cache
+C:\Users\mypc\source\repos\Kiji\bin\Debug\Kiji.exe.config
+C:\Users\mypc\source\repos\Kiji\bin\Debug\Kiji.exe
+C:\Users\mypc\source\repos\Kiji\bin\Debug\Kiji.pdb
+C:\Users\mypc\source\repos\Kiji\obj\Debug\Kiji.exe
+C:\Users\mypc\source\repos\Kiji\obj\Debug\Kiji.pdb
+C:\Users\mypc\source\repos\Kiji\obj\Debug\Kiji.csproj.CoreCompileInputs.cache

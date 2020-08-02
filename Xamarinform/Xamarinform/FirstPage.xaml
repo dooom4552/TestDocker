@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Xamarinform.FirstPage" 
+             Title="First Page">
+             <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <!--<Entry x:Name="entry1"  Placeholder="Напиши что нибудь"  ></Entry>
+            <Button Text="Нажми!" HeightRequest="100" FontAttributes="Bold" Clicked="ButtonHello_Click"></Button>
+            <Label x:Name= "label1"  FontSize="27" Text ="Привет! :)"></Label>
+            <BoxView Color="Silver" />
+            <BoxView Color="Blue" />
+            <BoxView Color="Gray" />-->
+
+            <!--<Button Text ="Start" VerticalOptions="Start" />
+            <Button Text ="Center" VerticalOptions="Center" />-->
+            <Button  Text ="End" VerticalOptions="FillAndExpand" />
+            <Button  Text ="Fill" VerticalOptions="FillAndExpand" />
+        </StackLayout>
+            </ContentPage.Content>
+</ContentPage>

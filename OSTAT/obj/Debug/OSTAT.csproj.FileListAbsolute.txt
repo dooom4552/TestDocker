@@ -1,0 +1,6 @@
+C:\Users\mypc\source\repos\OSTAT\bin\Debug\OSTAT.exe.config
+C:\Users\mypc\source\repos\OSTAT\bin\Debug\OSTAT.exe
+C:\Users\mypc\source\repos\OSTAT\bin\Debug\OSTAT.pdb
+C:\Users\mypc\source\repos\OSTAT\obj\Debug\OSTAT.csprojAssemblyReference.cache
+C:\Users\mypc\source\repos\OSTAT\obj\Debug\OSTAT.exe
+C:\Users\mypc\source\repos\OSTAT\obj\Debug\OSTAT.pdb

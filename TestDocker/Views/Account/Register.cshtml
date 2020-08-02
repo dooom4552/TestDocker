@@ -1,0 +1,43 @@
+﻿@model TestDocker.ViewsModels.RegisterViewModel
+
+<form id="LoginForm" method="post" asp-controller="Account" asp-action="Register">
+</form>
+<div asp-validation-summary="ModelOnly"></div>
+<div class="justify-content-center">
+    <div class="d-flex justify-content-center h-100">
+        <div class="card ">
+            <div class="card-header text-center m-2">
+                <img src="~/img/register.png" height="70" />
+                <h4>Регистрация </h4>
+                <h4>нового пользователя</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" asp-controller="Account" asp-action="Register">
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user bg-danger"></i></span>
+                        </div>
+                        <input asp-for="Email" type="text" class="form-control" placeholder="имя пользователя" id="username">
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="пароль" id="psw">
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input asp-for="PasswordConfirm" type="password" class="form-control" placeholder="Подтвердить пароль" id="psw">
+                        <span asp-validation-for="PasswordConfirm"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Регистрация" class="btn btn-warning m-2 float-right" title="Регистрация" onclick="loginValidate()">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

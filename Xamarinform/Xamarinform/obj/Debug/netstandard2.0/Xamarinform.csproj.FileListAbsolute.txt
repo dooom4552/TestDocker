@@ -1,0 +1,14 @@
+C:\Users\mypc\source\repos\Xamarinform\Xamarinform\bin\Debug\netstandard2.0\Xamarinform.deps.json
+C:\Users\mypc\source\repos\Xamarinform\Xamarinform\bin\Debug\netstandard2.0\Xamarinform.dll
+C:\Users\mypc\source\repos\Xamarinform\Xamarinform\bin\Debug\netstandard2.0\ref\Xamarinform.dll
+C:\Users\mypc\source\repos\Xamarinform\Xamarinform\bin\Debug\netstandard2.0\Xamarinform.pdb
+C:\Users\mypc\source\repos\Xamarinform\Xamarinform\obj\Debug\netstandard2.0\Xamarinform.csprojAssemblyReference.cache
+C:\Users\mypc\source\repos\Xamarinform\Xamarinform\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\mypc\source\repos\Xamarinform\Xamarinform\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+C:\Users\mypc\source\repos\Xamarinform\Xamarinform\obj\Debug\netstandard2.0\Xamarinform.AssemblyInfoInputs.cache
+C:\Users\mypc\source\repos\Xamarinform\Xamarinform\obj\Debug\netstandard2.0\Xamarinform.AssemblyInfo.cs
+C:\Users\mypc\source\repos\Xamarinform\Xamarinform\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\mypc\source\repos\Xamarinform\Xamarinform\obj\Debug\netstandard2.0\Xamarinform.dll
+C:\Users\mypc\source\repos\Xamarinform\Xamarinform\obj\Debug\netstandard2.0\ref\Xamarinform.dll
+C:\Users\mypc\source\repos\Xamarinform\Xamarinform\obj\Debug\netstandard2.0\Xamarinform.pdb
+C:\Users\mypc\source\repos\Xamarinform\Xamarinform\obj\Debug\netstandard2.0\FirstPage.xaml.g.cs

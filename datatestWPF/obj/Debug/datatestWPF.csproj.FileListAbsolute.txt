@@ -1,0 +1,14 @@
+C:\Users\mypc\source\repos\datatestWPF\obj\Debug\datatestWPF.csprojAssemblyReference.cache
+C:\Users\mypc\source\repos\datatestWPF\obj\Debug\MainWindow.g.cs
+C:\Users\mypc\source\repos\datatestWPF\obj\Debug\App.g.cs
+C:\Users\mypc\source\repos\datatestWPF\obj\Debug\datatestWPF_MarkupCompile.cache
+C:\Users\mypc\source\repos\datatestWPF\obj\Debug\datatestWPF_MarkupCompile.lref
+C:\Users\mypc\source\repos\datatestWPF\bin\Debug\datatestWPF.exe.config
+C:\Users\mypc\source\repos\datatestWPF\bin\Debug\datatestWPF.exe
+C:\Users\mypc\source\repos\datatestWPF\bin\Debug\datatestWPF.pdb
+C:\Users\mypc\source\repos\datatestWPF\obj\Debug\MainWindow.baml
+C:\Users\mypc\source\repos\datatestWPF\obj\Debug\datatestWPF.g.resources
+C:\Users\mypc\source\repos\datatestWPF\obj\Debug\datatestWPF.Properties.Resources.resources
+C:\Users\mypc\source\repos\datatestWPF\obj\Debug\datatestWPF.csproj.GenerateResource.cache
+C:\Users\mypc\source\repos\datatestWPF\obj\Debug\datatestWPF.exe
+C:\Users\mypc\source\repos\datatestWPF\obj\Debug\datatestWPF.pdb

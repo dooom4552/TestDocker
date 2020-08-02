@@ -1,0 +1,14 @@
+C:\Users\mypc\source\repos\PoliNomMathWPFNet\bin\Debug\PoliNomMathWPFNet.exe.config
+C:\Users\mypc\source\repos\PoliNomMathWPFNet\bin\Debug\PoliNomMathWPFNet.exe
+C:\Users\mypc\source\repos\PoliNomMathWPFNet\bin\Debug\PoliNomMathWPFNet.pdb
+C:\Users\mypc\source\repos\PoliNomMathWPFNet\obj\Debug\PoliNomMathWPFNet.csprojAssemblyReference.cache
+C:\Users\mypc\source\repos\PoliNomMathWPFNet\obj\Debug\MainWindow.g.cs
+C:\Users\mypc\source\repos\PoliNomMathWPFNet\obj\Debug\App.g.cs
+C:\Users\mypc\source\repos\PoliNomMathWPFNet\obj\Debug\PoliNomMathWPFNet_MarkupCompile.cache
+C:\Users\mypc\source\repos\PoliNomMathWPFNet\obj\Debug\PoliNomMathWPFNet_MarkupCompile.lref
+C:\Users\mypc\source\repos\PoliNomMathWPFNet\obj\Debug\MainWindow.baml
+C:\Users\mypc\source\repos\PoliNomMathWPFNet\obj\Debug\PoliNomMathWPFNet.g.resources
+C:\Users\mypc\source\repos\PoliNomMathWPFNet\obj\Debug\PoliNomMathWPFNet.Properties.Resources.resources
+C:\Users\mypc\source\repos\PoliNomMathWPFNet\obj\Debug\PoliNomMathWPFNet.csproj.GenerateResource.cache
+C:\Users\mypc\source\repos\PoliNomMathWPFNet\obj\Debug\PoliNomMathWPFNet.exe
+C:\Users\mypc\source\repos\PoliNomMathWPFNet\obj\Debug\PoliNomMathWPFNet.pdb

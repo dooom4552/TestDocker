@@ -1,0 +1,13 @@
+C:\Users\mypc\source\repos\deltest\bin\Debug\netcoreapp3.1\deltest.exe
+C:\Users\mypc\source\repos\deltest\bin\Debug\netcoreapp3.1\deltest.deps.json
+C:\Users\mypc\source\repos\deltest\bin\Debug\netcoreapp3.1\deltest.runtimeconfig.json
+C:\Users\mypc\source\repos\deltest\bin\Debug\netcoreapp3.1\deltest.runtimeconfig.dev.json
+C:\Users\mypc\source\repos\deltest\bin\Debug\netcoreapp3.1\deltest.dll
+C:\Users\mypc\source\repos\deltest\bin\Debug\netcoreapp3.1\deltest.pdb
+C:\Users\mypc\source\repos\deltest\obj\Debug\netcoreapp3.1\deltest.csprojAssemblyReference.cache
+C:\Users\mypc\source\repos\deltest\obj\Debug\netcoreapp3.1\deltest.AssemblyInfoInputs.cache
+C:\Users\mypc\source\repos\deltest\obj\Debug\netcoreapp3.1\deltest.AssemblyInfo.cs
+C:\Users\mypc\source\repos\deltest\obj\Debug\netcoreapp3.1\deltest.dll
+C:\Users\mypc\source\repos\deltest\obj\Debug\netcoreapp3.1\deltest.pdb
+C:\Users\mypc\source\repos\deltest\obj\Debug\netcoreapp3.1\deltest.genruntimeconfig.cache
+C:\Users\mypc\source\repos\deltest\obj\Debug\netcoreapp3.1\deltest.csproj.CoreCompileInputs.cache

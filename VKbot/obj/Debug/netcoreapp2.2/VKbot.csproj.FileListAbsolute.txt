@@ -1,0 +1,14 @@
+C:\Users\mypc\source\repos\VKbot\bin\Debug\netcoreapp2.2\appsettings.Development.json
+C:\Users\mypc\source\repos\VKbot\bin\Debug\netcoreapp2.2\appsettings.json
+C:\Users\mypc\source\repos\VKbot\bin\Debug\netcoreapp2.2\Controllers\appsettings.json
+C:\Users\mypc\source\repos\VKbot\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
+C:\Users\mypc\source\repos\VKbot\bin\Debug\netcoreapp2.2\VKbot.deps.json
+C:\Users\mypc\source\repos\VKbot\bin\Debug\netcoreapp2.2\VKbot.runtimeconfig.json
+C:\Users\mypc\source\repos\VKbot\bin\Debug\netcoreapp2.2\VKbot.runtimeconfig.dev.json
+C:\Users\mypc\source\repos\VKbot\bin\Debug\netcoreapp2.2\VKbot.dll
+C:\Users\mypc\source\repos\VKbot\obj\Debug\netcoreapp2.2\VKbot.csprojAssemblyReference.cache
+C:\Users\mypc\source\repos\VKbot\obj\Debug\netcoreapp2.2\VKbot.RazorAssemblyInfo.cache
+C:\Users\mypc\source\repos\VKbot\obj\Debug\netcoreapp2.2\VKbot.RazorAssemblyInfo.cs
+C:\Users\mypc\source\repos\VKbot\obj\Debug\netcoreapp2.2\VKbot.AssemblyInfoInputs.cache
+C:\Users\mypc\source\repos\VKbot\obj\Debug\netcoreapp2.2\VKbot.AssemblyInfo.cs
+C:\Users\mypc\source\repos\VKbot\obj\Debug\netcoreapp2.2\VKbot.RazorTargetAssemblyInfo.cache

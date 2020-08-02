@@ -1,0 +1,10 @@
+﻿@model TestDocker.ViewsModels.EditNomenclatureViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+@foreach(Brand brand in Model.Brands)
+{
+    <h3>@brand.Id @brand.Name</h3>
+}

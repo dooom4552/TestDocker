@@ -1,0 +1,10 @@
+C:\Users\mypc\source\repos\WindowsForms1\WindowsForms1\bin\Debug\WindowsForms1.exe.config
+C:\Users\mypc\source\repos\WindowsForms1\WindowsForms1\bin\Debug\WindowsForms1.exe
+C:\Users\mypc\source\repos\WindowsForms1\WindowsForms1\bin\Debug\WindowsForms1.pdb
+C:\Users\mypc\source\repos\WindowsForms1\WindowsForms1\obj\Debug\WindowsForms1.csprojAssemblyReference.cache
+C:\Users\mypc\source\repos\WindowsForms1\WindowsForms1\obj\Debug\WindowsForms1.Properties.Resources.resources
+C:\Users\mypc\source\repos\WindowsForms1\WindowsForms1\obj\Debug\WindowsForms1.csproj.GenerateResource.cache
+C:\Users\mypc\source\repos\WindowsForms1\WindowsForms1\obj\Debug\WindowsForms1.csproj.CoreCompileInputs.cache
+C:\Users\mypc\source\repos\WindowsForms1\WindowsForms1\obj\Debug\WindowsForms1.exe
+C:\Users\mypc\source\repos\WindowsForms1\WindowsForms1\obj\Debug\WindowsForms1.pdb
+C:\Users\mypc\source\repos\WindowsForms1\WindowsForms1\obj\Debug\WindowsForms1.LoginForm.resources
