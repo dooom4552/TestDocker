@@ -24,7 +24,13 @@ namespace TestDocker.Controllers
 
         public IActionResult Index() => View(_roleManager.Roles.ToList());
 
-        public IActionResult UserList() => View(_userManager.Users.ToList());
+        public IActionResult UserList() 
+        {
+            var Users = from user in _userManager.Users.ToList()
+                        where user.Email != User.Identity.Name
+                        select user;
+            return View(Users);
+        } 
 
         public async Task<IActionResult> Edit(string userId)
         {

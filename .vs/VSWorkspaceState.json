@@ -1,4 +1,9 @@
 {
-  "ExpandedNodes": [],
+  "ExpandedNodes": [
+    "",
+    "\\TestDocker",
+    "\\TestDocker\\TestDocker"
+  ],
+  "SelectedNode": "\\TestDocker\\TestDocker\\TestDocker.sln",
   "PreviewInSolutionExplorer": false
 }

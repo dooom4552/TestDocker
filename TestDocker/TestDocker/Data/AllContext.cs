@@ -15,6 +15,7 @@ namespace TestDocker.Data
         public DbSet<FurnitureType> FurnitureTypes { get; set; }
         public DbSet<Finishing> Finishings { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Buyer> Buyers { get; set; }
 
         public AllContext(DbContextOptions<AllContext> options)
             : base(options)
