@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TestDocker.Data;
+using TestDocker.Models;
 using TestDocker.ViewsModels;
 
 namespace TestDocker.Controllers
@@ -23,7 +24,7 @@ namespace TestDocker.Controllers
             EditNomenclatureViewModel model = new EditNomenclatureViewModel()
             {
                 Brands = await db.Brands.ToListAsync(),
-                Collections = await db.Collections.ToListAsync(),
+                BrandCollections = await db.BrandCollections.ToListAsync(),
                 FurnitureNames = await db.FurnitureNames.ToListAsync(),
                 FurnitureTypes = await db.FurnitureTypes.ToListAsync(),
                 Finishings = await db.Finishings.ToListAsync(),
@@ -31,5 +32,98 @@ namespace TestDocker.Controllers
             };
             return View(model);
         }
+
+        [HttpGet]
+        [ActionName("DeleteBrand")]
+        public async Task<IActionResult> ConfirmDeleteBrand(int? id)
+        {
+            if (id != null)
+            {
+                Brand brand = await db.Brands.FirstOrDefaultAsync(u => u.Id == id);
+                if (brand != null)
+                {
+                    BrandViewModel model = new BrandViewModel()
+                    {
+                        Id = (int)id,
+                        Name = brand.Name,
+                        BrandCollections = await db.BrandCollections.Where(ye => ye.BrandId == id).ToListAsync()
+                    };
+                    return View(model);
+                }
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteBrand(int? id)
+        {
+            if (id != null)
+            {
+                Brand brand = await db.Brands.FirstOrDefaultAsync(u => u.Id == id);
+                if (brand != null)
+                {
+                    db.Brands.Remove(brand);
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateBrand(Brand model)
+        {
+            Brand brand = await db.Brands.FirstOrDefaultAsync(u => u.Name == model.Name);
+
+            if (brand == null)
+            {
+                Brand _brand= new Brand()
+                {
+                    Name = model.Name
+                };
+                db.Brands.Add(_brand);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return NotFound();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> BrandDetails(int? id)
+        {
+            Brand brand = await db.Brands.FirstOrDefaultAsync(b => b.Id == id);
+            if(brand != null)
+            {
+                BrandViewModel brandViewModel = new BrandViewModel()
+                {
+                    Id = (int)id,
+                    Name = brand.Name,
+                    BrandCollections = await db.BrandCollections.Where(bc => bc.BrandId == id).ToListAsync()
+                };
+                return View(brandViewModel);
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateBrandCollection(BrandViewModel model)
+        {
+            BrandCollection brandCollection  = await db.BrandCollections.FirstOrDefaultAsync(u => u.Name == model.BrandCollectionName);
+
+            if (brandCollection == null)
+            {
+                BrandCollection _brandCollection = new BrandCollection()
+                {
+                    Name = model.BrandCollectionName,
+                    BrandId=model.Id
+                };
+                db.BrandCollections.Add(_brandCollection);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return NotFound();
+        }
+
     }
+
 }

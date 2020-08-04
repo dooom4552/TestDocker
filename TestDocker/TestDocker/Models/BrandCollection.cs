@@ -8,7 +8,7 @@ namespace TestDocker.Models
     /// <summary>
     /// коллекция в брэнде
     /// </summary>
-    public class Collection
+    public class BrandCollection
     {
         public int Id { get; set; }
         public string Name { get; set; }

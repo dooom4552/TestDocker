@@ -10,7 +10,7 @@ namespace TestDocker.Data
     public class AllContext : DbContext
     {
         public DbSet<Brand> Brands { get; set; }
-        public DbSet<Collection> Collections { get; set; }
+        public DbSet<BrandCollection> BrandCollections { get; set; }
         public DbSet<FurnitureName> FurnitureNames { get; set; }
         public DbSet<FurnitureType> FurnitureTypes { get; set; }
         public DbSet<Finishing> Finishings { get; set; }
@@ -32,10 +32,10 @@ namespace TestDocker.Data
                 }
                 );
 
-            modelBuilder.Entity<Collection>().HasData(
-                new Collection[]
+            modelBuilder.Entity<BrandCollection>().HasData(
+                new BrandCollection[]
                 {
-                    new Collection{Id=1, Name="Florence", BrandId=1}
+                    new BrandCollection{Id=1, Name="Florence", BrandId=1}
                 }
                 );
             modelBuilder.Entity<FurnitureName>().HasData(
