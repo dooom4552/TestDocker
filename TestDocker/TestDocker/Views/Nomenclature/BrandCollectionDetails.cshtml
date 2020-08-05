@@ -1,0 +1,80 @@
+﻿@model TestDocker.ViewsModels.BrandCollectionViewModel
+
+
+<h1>@Model.Name</h1>
+<h2>Изделия</h2>
+<div class="card-body">
+    <div class="card card-body">
+
+        @foreach (FurnitureName furnitureName in Model.FurnitureNames)
+        {
+            <div class="container-fluid">
+                <div class="row m-1">
+                    <div class="col-1">
+                        <a>
+                            @furnitureName.Id
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <a >
+                            @furnitureName.Name
+                        </a>
+                    </div>
+                    <div class="col-7">
+                        <a class="btn btn-sm btn-primary" asp-controller="Nomenclature"
+                           asp-action="DeleteFurnitureName" asp-route-id="@furnitureName.Id">Удалить</a>
+                    </div>
+                </div>
+
+            </div>
+        }
+        <form asp-action="CreateFurnirureName" asp-controller="Nomenclature" method="post" asp-route-Id="@Model.Id">
+            <div class="form-group m-3">
+                <label class="control-label">Название</label>
+                <input type="text" asp-for="FurnitureName" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Добавить изделие" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+<h2>Отделки</h2>
+<div class="card-body">
+    <div class="card card-body">
+
+        @foreach (Finishing finishing in Model.Finishings)
+        {
+            <div class="container-fluid">
+                <div class="row m-1">
+                    <div class="col-1">
+                        <a>
+                            @finishing.Id
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <a >
+                            @finishing.Name
+                        </a>
+                    </div>
+                    <div class="col-7">
+                        <a class="btn btn-sm btn-primary" asp-controller="Nomenclature"
+                           asp-action="DeleteFinishing" asp-route-id="@finishing.Id">Удалить</a>
+                    </div>
+                </div>
+
+            </div>
+        }
+        <form asp-action="CreateFinishing" asp-controller="Nomenclature" method="post" asp-route-Id="@Model.Id">
+            <div class="form-group m-3">
+                <label class="control-label">Название</label>
+                <input type="text" asp-for="FinishingName" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Добавить отделку" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>

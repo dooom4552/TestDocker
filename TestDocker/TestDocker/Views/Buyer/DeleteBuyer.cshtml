@@ -1,0 +1,30 @@
+﻿@model TestDocker.ViewsModels.BuyerViewModel
+@{
+    ViewBag.Title = "Удаление покупателя";
+}
+<div>
+    <dl class="dl-horizontal">
+        <dt>Имя</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+    <div>
+        @if (Model.Products.Count > 0)
+        {
+            <h4>
+                Удалить не возможно <br />
+                есть  товары купленные данным покупателем
+            </h4>
+            <h4>Всего: @Model.Products.Count</h4>
+        }
+        else
+        {
+            <form asp-action="DeleteBuyer" asp-route-id="@Model.Id" method="post">
+                <div class="form-group">
+                    <input type="submit" class="btn btn-danger" value="Удалить" />
+                </div>
+            </form>
+        }
+    </div>
+</div>

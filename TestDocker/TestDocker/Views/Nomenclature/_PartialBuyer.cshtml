@@ -1,0 +1,36 @@
+﻿@model TestDocker.ViewsModels.EditNomenclatureViewModel
+<div class="card card-body">
+
+    @foreach (Buyer buyer in Model.Buyers)
+    {
+        <div class="container-fluid">
+            <div class="row m-1">
+                <div class="col-1">
+                    <a>
+                        @buyer.Id
+                    </a>
+                </div>
+                <div class="col-3">
+                    <a>
+                        @buyer.Name
+                    </a>
+                </div>
+                <div class="col-7">
+                    <a class="btn btn-sm btn-primary" asp-controller="Buyer"
+                       asp-action="DeleteBuyer" asp-route-id="@buyer.Id">Удалить</a>
+                </div>
+            </div>
+
+        </div>
+    }
+    <form asp-action="CreateBuyer" asp-controller="Buyer">
+        <div class="form-group m-3">
+            <label class="control-label">Название</label>
+            <input type="text" asp-for="Name" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Добавить покупателя" class="btn btn-default" />
+        </div>
+    </form>
+</div>
