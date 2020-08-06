@@ -1,26 +1,26 @@
 ﻿@model TestDocker.ViewsModels.EditNomenclatureViewModel
-    <div class="card card-body">
 
+    <div class="card card-body">
+        <h2>Brands</h2>
         @foreach (Brand brand in Model.Brands)
         {
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row m-1">
-                    <div class="col-1">
+                    <div class="col-sm-2">
                         <a>
                             @brand.Id
                         </a>
                     </div>
-                    <div class="col-3">
-                        <a asp-controller="Nomenclature"
+                    <div class="col-sm-6">
+                        <h6 asp-controller="Nomenclature"
                            asp-action="BrandDetails"
-                           asp-route-id="@brand.Id"
-                           title="Добавить коллекции">
+                           asp-route-id="@brand.Id">
                             @brand.Name
-                        </a>
+                        </h6>
                     </div>
-                    <div class="col-7">
+                    <div class="col-sm-4">
                         <a class="btn btn-sm btn-primary" asp-controller="Nomenclature"
-                           asp-action="DeleteBrand" asp-route-id="@brand.Id">Удалить</a>
+                           asp-action="DeleteBrand" asp-route-id="@brand.Id">Delete</a>
                     </div>
                 </div>
 
@@ -28,12 +28,12 @@
         }
         <form asp-action="CreateBrand" asp-controller="Nomenclature">
             <div class="form-group m-3">
-                <label class="control-label">Название</label>
+                <label class="control-label">Name</label>
                 <input type="text" asp-for="Name" class="form-control" />
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Добавить брэнд" class="btn btn-default" />
+                <input type="submit" value="Add brand" class="btn btn-default" />
             </div>
         </form>
     </div>
