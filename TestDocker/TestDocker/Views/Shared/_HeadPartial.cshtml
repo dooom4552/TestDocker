@@ -1,0 +1,48 @@
+﻿
+    <div class="container">
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#brandcollapse" aria-expanded="true" aria-controls="collapseOne">
+                            Брэнды
+                        </button>
+                    </h2>
+                </div>
+
+                <div id="brandcollapse" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        @*<partial name="_PartialBrand" />*@
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#furnituretypecollapse" aria-expanded="false" aria-controls="collapseThree">
+                            Типы изделий
+                        </button>
+                    </h2>
+                </div>
+                <div id="furnituretypecollapse" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        @*<partial name="_PartialFurnitureType" />*@
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#buyercollapse" aria-expanded="false" aria-controls="collapseThree">
+                            Покупатели
+                        </button>
+                    </h2>
+                </div>
+                <div id="buyercollapse" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        @*<partial name="_PartialBuyer" />*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
