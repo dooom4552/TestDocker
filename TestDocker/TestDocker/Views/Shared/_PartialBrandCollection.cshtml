@@ -2,7 +2,7 @@
 
     <div class="card card-body">
         <h2>Collections</h2>
-        @foreach (BrandCollection brandCollection in Model.BrandCollections)
+        @foreach (BrandCollectionBrandNameViewModel brandCollection in Model.BrandCollectionBrandNameViewModels)
         {
             <div class="container-fluid">
                 <div class="row m-1">
@@ -11,9 +11,9 @@
                             @brandCollection.Id
                         </a>
                     </div>
-                    <div class="col-1">
+                    <div class="col-3">
                         <a>
-                            @brandCollection.BrandId
+                            @brandCollection.BrandName
                         </a>
                     </div>
                     <div class="col-3">
@@ -23,7 +23,7 @@
                             @brandCollection.Name
                         </a>
                     </div>
-                    <div class="col-7">
+                    <div class="col-5">
                         <a class="btn btn-sm btn-primary" asp-controller="Nomenclature"
                            asp-action="DeleteBrandCollection" asp-route-id="@brandCollection.Id">Delete</a>
                     </div>

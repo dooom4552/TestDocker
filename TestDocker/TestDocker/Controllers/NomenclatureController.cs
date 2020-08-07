@@ -23,15 +23,28 @@ namespace TestDocker.Controllers
 
         public async Task<IActionResult> Add()
         {
+
             EditNomenclatureViewModel model = new EditNomenclatureViewModel()
             {
-                Brands = await db.Brands.ToListAsync(),
-                BrandCollections = await db.BrandCollections.ToListAsync(),
+                Brands = await db.Brands.ToListAsync(),                
                 FurnitureNames = await db.FurnitureNames.ToListAsync(),
                 FurnitureTypes = await db.FurnitureTypes.ToListAsync(),
                 Finishings = await db.Finishings.ToListAsync(),
                 Buyers = await db.Buyers.ToListAsync()
             };
+            List<BrandCollection> BrandCollections = await db.BrandCollections.ToListAsync();
+            List<BrandCollectionBrandNameViewModel> _BrandCollectionsVM = new List<BrandCollectionBrandNameViewModel>();
+            foreach (BrandCollection  brandCollection in BrandCollections)
+            {
+                _BrandCollectionsVM.Add(new BrandCollectionBrandNameViewModel() 
+                { 
+                BrandId= brandCollection.BrandId,
+                BrandName=await GetNameById.GetBrandNameByCollectionId(db, brandCollection.Id),
+                Id=brandCollection.Id,
+                Name=brandCollection.Name
+                });
+            }
+            model.BrandCollectionBrandNameViewModels = _BrandCollectionsVM;
             return View(model);
         }
 
