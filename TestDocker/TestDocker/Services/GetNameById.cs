@@ -28,6 +28,12 @@ namespace TestDocker.Services
             BrandCollection brandCollection = await db.BrandCollections.FirstOrDefaultAsync(bc => bc.Id == id);
             return brandCollection.Name;
         }
+
+        public static async Task<string> GetBrandNameById(AllContext db, int id)
+        {
+            Brand brand = await db.Brands.FirstOrDefaultAsync(b => b.Id ==id);
+            return brand.Name;
+        }
         public static async Task<string> GetBrandNameByCollectionId(AllContext db, int id)
         {
             BrandCollection brandCollection = await db.BrandCollections.FirstOrDefaultAsync(bc => bc.Id == id);

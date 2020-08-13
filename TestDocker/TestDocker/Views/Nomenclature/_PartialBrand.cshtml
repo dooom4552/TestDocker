@@ -1,26 +1,75 @@
 ﻿@model TestDocker.ViewsModels.EditNomenclatureViewModel
 
-    <div class="card card-body">
+<table class="table table-striped table-responsive-md btn-table">
+    <thead>
+        <tr>
+            <th colspan="2" class="text-center">Brands</th>
+        </tr>
+        <tr>
+            <th>Brand</th>
+            <th colspan="2" class="text-center">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Brand Brand in Model.Brands)
+        {
+            <tr>
+                <th scope="row">
+                    @Brand.Name
+                </th>
+                <td></td>
+                <td>
+                    <form asp-controller="Nomenclature"
+                          asp-action="DeleteBrand"
+                          asp-route-BrandId="@Brand.Id">
+                        <input required asp-for="BrandCollectionName" type="text" formmethod="get" />
+                        <input type="submit" class="btn btn-outline-success btn-sm m-0" value="AddColl" />
+                    </form>
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-outline-danger" 
+                       asp-controller="Nomenclature"
+                       asp-action="DeleteBrand" 
+                       asp-route-id="@Brand.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<form asp-action="CreateBrand" asp-controller="Nomenclature">
+    <div class="form-group m-3">
+        <label class="control-label">Name</label>
+        <input type="text" asp-for="Name" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Add brand" class="btn btn-default" />
+    </div>
+</form>
+
+
+@*<div class="card card-body">
         <h2>Brands</h2>
         @foreach (Brand brand in Model.Brands)
         {
             <div class="container">
                 <div class="row m-1">
-                    <div class="col-sm-2">
+
+                    <div class="col-sm-6">
                         <a>
-                            @brand.Id
+                            @brand.Name
                         </a>
                     </div>
-                    <div class="col-sm-6">
-                        <h6 asp-controller="Nomenclature"
-                           asp-action="BrandDetails"
-                           asp-route-id="@brand.Id">
-                            @brand.Name
-                        </h6>
-                    </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                         <a class="btn btn-sm btn-primary" asp-controller="Nomenclature"
                            asp-action="DeleteBrand" asp-route-id="@brand.Id">Delete</a>
+                    </div>
+                    <div class="col-sm-2">
+                        <form>
+                            <input type="text"/>
+                            <a class="btn btn-sm btn-primary" asp-controller="Nomenclature"
+                               asp-action="CreateBrandCollection" asp-route-id="@brand.Id">AddColl</a>
+                        </form>
                     </div>
                 </div>
 
@@ -36,4 +85,4 @@
                 <input type="submit" value="Add brand" class="btn btn-default" />
             </div>
         </form>
-    </div>
+    </div>*@

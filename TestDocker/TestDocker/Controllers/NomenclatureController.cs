@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +27,7 @@ namespace TestDocker.Controllers
 
             EditNomenclatureViewModel model = new EditNomenclatureViewModel()
             {
-                Brands = await db.Brands.ToListAsync(),                
+                Brands = await db.Brands.ToListAsync(),
                 FurnitureNames = await db.FurnitureNames.ToListAsync(),
                 FurnitureTypes = await db.FurnitureTypes.ToListAsync(),
                 Finishings = await db.Finishings.ToListAsync(),
@@ -34,14 +35,14 @@ namespace TestDocker.Controllers
             };
             List<BrandCollection> BrandCollections = await db.BrandCollections.ToListAsync();
             List<BrandCollectionBrandNameViewModel> _BrandCollectionsVM = new List<BrandCollectionBrandNameViewModel>();
-            foreach (BrandCollection  brandCollection in BrandCollections)
+            foreach (BrandCollection brandCollection in BrandCollections)
             {
-                _BrandCollectionsVM.Add(new BrandCollectionBrandNameViewModel() 
-                { 
-                BrandId= brandCollection.BrandId,
-                BrandName=await GetNameById.GetBrandNameByCollectionId(db, brandCollection.Id),
-                Id=brandCollection.Id,
-                Name=brandCollection.Name
+                _BrandCollectionsVM.Add(new BrandCollectionBrandNameViewModel()
+                {
+                    BrandId = brandCollection.BrandId,
+                    BrandName = await GetNameById.GetBrandNameByCollectionId(db, brandCollection.Id),
+                    Id = brandCollection.Id,
+                    Name = brandCollection.Name
                 });
             }
             model.BrandCollectionBrandNameViewModels = _BrandCollectionsVM;
@@ -53,13 +54,13 @@ namespace TestDocker.Controllers
         {
             EditNomenclatureViewModel model = new EditNomenclatureViewModel()
             {
-                Brands = await db.Brands.ToListAsync(),                
+                Brands = await db.Brands.ToListAsync(),
                 FurnitureNames = await db.FurnitureNames.ToListAsync(),
                 FurnitureTypes = await db.FurnitureTypes.ToListAsync(),
                 Finishings = await db.Finishings.ToListAsync(),
                 Buyers = await db.Buyers.ToListAsync()
             };
-           
+
             return View(model);
         }
 
@@ -94,7 +95,7 @@ namespace TestDocker.Controllers
                 {
                     db.Brands.Remove(brand);
                     await db.SaveChangesAsync();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Add");
                 }
             }
             return NotFound();
@@ -107,13 +108,13 @@ namespace TestDocker.Controllers
 
             if (brand == null)
             {
-                Brand _brand= new Brand()
+                Brand _brand = new Brand()
                 {
                     Name = model.Name
                 };
                 db.Brands.Add(_brand);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Add");
             }
             return NotFound();
         }
@@ -122,7 +123,7 @@ namespace TestDocker.Controllers
         public async Task<IActionResult> BrandDetails(int? id)
         {
             Brand brand = await db.Brands.FirstOrDefaultAsync(b => b.Id == id);
-            if(brand != null)
+            if (brand != null)
             {
                 BrandViewModel brandViewModel = new BrandViewModel()
                 {
@@ -136,22 +137,46 @@ namespace TestDocker.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateBrandCollection(BrandViewModel model)
+        public async Task<IActionResult> CreateBrandCollection(EditNomenclatureViewModel model)
         {
-            BrandCollection brandCollection  = await db.BrandCollections.FirstOrDefaultAsync(u => u.Name == model.BrandCollectionName);
+            string name = await GetNameById.GetBrandNameById(db, model.BrandId);
+            name = name + "\\" + model.BrandCollectionName;
+            BrandCollection brandCollection = await db.BrandCollections.FirstOrDefaultAsync(u => u.Name == name);
 
             if (brandCollection == null)
             {
                 BrandCollection _brandCollection = new BrandCollection()
                 {
-                    Name = model.BrandCollectionName,
-                    BrandId=model.Id
+                    Name = name,
+                    BrandId = model.BrandId
                 };
                 db.BrandCollections.Add(_brandCollection);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Add");
             }
             return NotFound();
+        }
+
+        [HttpGet]
+        [ActionName("DeleteBrandCollection")]
+        public async Task<IActionResult> ConfirmDeleteBrandCollection(int? id)
+        {
+            if (id != null)
+            {
+                BrandCollection brandCollection = await db.BrandCollections.FirstOrDefaultAsync(b => b.Id == id);
+                if (brandCollection != null)
+                {
+                    BrandCollectionViewModel model = new BrandCollectionViewModel()
+                    {
+                        Id = (int)id,
+                        Name = brandCollection.Name,
+                        Finishings = await db.Finishings.Where(f => f.CollectionId == (int)id).ToListAsync(),
+                        FurnitureNames = await db.FurnitureNames.Where(f => f.CollectionId == (int)id).ToListAsync()
+                    };
+                    return View(model);
+                }               
+            }
+            return RedirectToAction("Add");
         }
 
     }
