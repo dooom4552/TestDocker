@@ -19,12 +19,41 @@
                 </th>
                 <td></td>
                 <td>
-                    <form asp-controller="Nomenclature"
-                          asp-action="DeleteBrand"
+                    @*<form asp-controller="Nomenclature"
+                          asp-action="CreateBrandCollection"
                           asp-route-BrandId="@Brand.Id">
                         <input required asp-for="BrandCollectionName" type="text" formmethod="get" />
                         <input type="submit" class="btn btn-outline-success btn-sm m-0" value="AddColl" />
-                    </form>
+                    </form>*@
+                    <button type="button" class="btn btn-outline-success btn-sm m-0" 
+                            data-toggle="modal" 
+                            data-whatever="@Brand.Name"
+                            data-target="#exampleModal">
+                        AddColl
+                    </button>                          
+                        <form asp-controller="Nomenclature"
+                          asp-action="CreateBrandCollection"
+                          asp-route-BrandId="@Brand.Id">
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input required asp-for="BrandCollectionName" type="text" formmethod="get" />
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <input type="submit" class="btn btn-outline-success btn-sm m-0" value="AddColl" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                 </td>
                 <td>
                     <a class="btn btn-sm btn-outline-danger" 
