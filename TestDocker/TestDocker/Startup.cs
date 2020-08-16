@@ -69,7 +69,7 @@ namespace TestDocker
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Nomenclature}/{action=Add}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

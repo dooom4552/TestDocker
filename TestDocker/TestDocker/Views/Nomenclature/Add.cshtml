@@ -1,17 +1,24 @@
 ﻿@model TestDocker.ViewsModels.EditNomenclatureViewModel
 <div class="row">
-    <div class="col-sm-4">
+    <div class="border col-sm-auto">
         <partial name="_PartialBrand" />
     </div>
-    <div class="col-sm-8">
+    <div class="border col-sm-auto">
         <partial name="_PartialBrandCollection" />
     </div>
-</div>
-<div class="row">
-    <div class="col-sm-6">
-        @*<partial name="_PartialBrand" />*@
+    <div class="border col-sm-auto">
+        <partial name="_PartialFurnitureName" />
     </div>
-    <div class="col-sm-6">
-        @*<partial name="_PartialBrand" />*@
+    <div class="border col-sm-auto">
+        <partial name="_PartialFinishing" />
+    </div>
+    <div class="border col-sm-auto">
+        <partial name="_PartialFurnitureType" />
+    </div>
+    <div class="border col-sm-auto">
+        <partial name="_PartialBuyer" />
     </div>
 </div>
+@section Footer {
+    <partial name="_FooterPartial" />
+}

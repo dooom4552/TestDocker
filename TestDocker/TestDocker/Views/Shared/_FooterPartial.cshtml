@@ -1,22 +1,84 @@
-﻿
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                1 из 2
+﻿@model TestDocker.ViewsModels.EditNomenclatureViewModel
+<div class="container-fluid">
+    <div class="row">
+        @{
+            List<string> test = new List<string>();
+            foreach (var brand in Model.Brands)
+            {
+                test.Add(brand.Name);
+            }
+        }
+        @foreach (var item in test)
+        {
+            <table>
+                <tr>
+                    <td>@item</td>
+                </tr>
+            </table>
+        }
+    <script>
+        function SectionFilter() {
+            var brands = @Json.Serialize(Model.Brands);
+        }
+
+        for (var i = 0; i < brands.length; i++) {           
+            $('#subselect').prepend('<option value="' + i + '">' + brands[i] + '</option>');
+        };
+        SubSectionFilter();
+
+    </script>
+        <select id="sel1">
+
+        </select>
+
+        <button type="button"  onclick="SectionFilter();"
+                class="btn btn-outline-success btn-sm m-0"
+                data-toggle="modal"
+                @*data-brands="@Model.Brands"*@
+                data-test="44"
+                @*data-furnitureNames="@Model.FurnitureNames"
+                data-furnitureTypes="@Model.FurnitureTypes"
+                data-finishings="@Model.Finishings"*@
+                data-target="#productModal">
+            AddProduct
+        </button>
+        <form asp-controller="Nomenclature"
+              asp-action="CreateBrandCollection">
+            <div class="modal fade" id="productModal" tabindex="-1"
+                 role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title"
+                                id="exampleModalLabel">
+                                Modal title
+                            </h5>
+                            <button type="button" class="close"
+                                    data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div hidden class="modal-brandid">
+                            <input required asp-for="BrandId" type="text" />
+                        </div>
+                        <div class="modal-body">
+                            <select class="mdb-select md-form colorful-select dropdown-primary">
+                            </select>
+                            <label class="mdb-main-label">Blue select</label>
+
+                            <input required asp-for="BrandCollectionName"
+                                   class="form-control"
+                                   type="text" formmethod="post" />
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-outline-success btn-sm m-0" value="AddColl" />
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col">
-                2 из 2
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                1 из 3
-            </div>
-            <div class="col">
-                2 из 3
-            </div>
-            <div class="col">
-                3 из 3
-            </div>
-        </div>
+        </form>
     </div>
+</div>

@@ -1,0 +1,28 @@
+﻿@model TestDocker.ViewsModels.EditNomenclatureViewModel
+
+<table class="table-sm table-striped table-responsive-md btn-table">
+    <thead>
+        <tr>
+            <th colspan="2" class="text-center">Finnishings</th>
+        </tr>
+        <tr>
+            <td>Brand\Collection\Finnishing</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Finishing finishing in Model.Finishings)
+        {
+            <tr>
+                <td scope="row">
+                    @finishing.Name
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-outline-danger"
+                       asp-controller="Nomenclature"
+                       asp-action="DeleteFinishing"
+                       asp-route-id="@finishing.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

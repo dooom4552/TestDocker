@@ -174,11 +174,146 @@ namespace TestDocker.Controllers
                         FurnitureNames = await db.FurnitureNames.Where(f => f.CollectionId == (int)id).ToListAsync()
                     };
                     return View(model);
-                }               
+                }
             }
             return RedirectToAction("Add");
         }
 
-    }
+        [HttpPost]
+        public async Task<IActionResult> DeleteBrandCollection(int? id)
+        {
+            if (id != null)
+            {
+                BrandCollection brandCollection = await db.BrandCollections
+                    .FirstOrDefaultAsync(b => b.Id == (int)id);
+                if (brandCollection != null)
+                {
+                    db.BrandCollections.Remove(brandCollection);
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Add");
+                }
+            }
+            return NotFound();
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> CreateFurName(EditNomenclatureViewModel model)
+        {
+            string name = await GetNameById.GetBrandCollectionName(db, model.BrandCollectionId);
+            name = name + "\\" + model.FurName;
+            FurnitureName furnitureName = await db.FurnitureNames
+                .FirstOrDefaultAsync(f => f.Name == model.FurName);
+            if (furnitureName == null)
+            {
+                FurnitureName _furnitureName = new FurnitureName
+                {
+                    CollectionId = model.BrandCollectionId,
+                    Name = name
+                };
+                db.FurnitureNames.Add(_furnitureName);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Add");
+            }
+            return NotFound();
+        }
+
+        [HttpGet]
+        [ActionName("DeleteFurnitureName")]
+        public async Task<IActionResult> ConfirmDeleteFurnitureName(int? id) 
+        {
+            if (id != null)
+            {
+                FurnitureName furnitureName = await db.FurnitureNames.FirstOrDefaultAsync(b => b.Id == id);
+                if (furnitureName != null)
+                {
+                    string FurnitureName = await GetNameById.GetFurnitureName(db, (int)id);
+                    FurnitureNameViewModel model = new FurnitureNameViewModel()
+                    {
+                        Id = (int)id,
+                        Name = furnitureName.Name,
+                        Products = await db.Products.Where(p => p.FurnitureName == FurnitureName).ToListAsync(),
+                    };
+                    return View(model);
+                }               
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteFurnitureName(int? id)
+        {
+            if (id != null)
+            {
+                FurnitureName furnitureName = await db.FurnitureNames
+                    .FirstOrDefaultAsync(b => b.Id == id);
+                if (furnitureName != null)
+                {
+                    db.FurnitureNames.Remove(furnitureName);
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Add");
+                }
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateFinishing(EditNomenclatureViewModel model)
+        {
+            string name = await GetNameById.GetBrandCollectionName(db, model.BrandCollectionId);
+            name = name + "\\" + model.FinishingName;
+            Finishing finishing = await db.Finishings
+                .FirstOrDefaultAsync(f => f.Name == model.FinishingName);
+            if (finishing == null)
+            {
+                Finishing _finishing = new Finishing 
+                {
+                    CollectionId = model.BrandCollectionId,
+                    Name = name
+                };
+                db.Finishings.Add(_finishing);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Add");
+            }
+            return NotFound();
+        }
+
+        [HttpGet]
+        [ActionName("DeleteFinishing")]
+        public async Task<IActionResult> ConfirmDeleteFinishing(int? id)
+        {
+            if (id != null)
+            {
+                Finishing finishing = await db.Finishings.FirstOrDefaultAsync(b => b.Id == id);
+                if (finishing != null)
+                {
+                    string finishingName = await GetNameById.GetFinishingName(db, (int)id);
+                    FinishingViewModel model = new FinishingViewModel()
+                    {
+                        Id = (int)id,
+                        Name = finishing.Name,
+                        Products = await db.Products.Where(p => p.Finishing== finishingName).ToListAsync(),
+                    };
+                    return View(model);
+                }
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteFinishing(int? id)
+        {
+            if (id != null)
+            {
+                Finishing finishing = await db.Finishings
+                    .FirstOrDefaultAsync(b => b.Id == id);
+                if (finishing != null)
+                {
+                    db.Finishings.Remove(finishing);
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Add");
+                }
+            }
+            return NotFound();
+        }
+    }
 }

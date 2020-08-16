@@ -1,13 +1,12 @@
 ﻿@model TestDocker.ViewsModels.EditNomenclatureViewModel
-<table class="table table-striped table-responsive-md btn-table">
+<table class="table-sm table-striped table-responsive-md btn-table">
 
     <thead>
         <tr>
             <th colspan="5" class="text-center">Collections</th>
         </tr>
         <tr>
-            <th>Collection</th>
-            <th colspan="4" class="text-center">Actions</th>
+            <td>Brand\Collection</td>
         </tr>
     </thead>
     <tbody>
@@ -16,22 +15,90 @@
         <tr>
             <td>@brandCollection.Name</td>
             <td>
+                <button type="button"
+                        class="btn btn-outline-success btn-sm m-0"
+                        data-toggle="modal"
+                        data-brandcollname="@brandCollection.Name"
+                        data-collectionid="@brandCollection.Id"
+                        data-target="#BrandCollectionModal">
+                    AddFurName
+                </button>
                 <form asp-controller="Nomenclature"
-                          asp-action="CreateBrandCollection"
-                          asp-route-BrandId="@brandCollection.Id">
-                    <input required asp-for="FurName" type="text" />
-                    <input type="submit" value="AddFurName"
-                            class="btn btn-outline-success btn-sm m-0"/>                                          
+                      asp-action="CreateFurName" method="post">
+                    <div class="modal fade" id="BrandCollectionModal" tabindex="-1"
+                         role="dialog" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title"
+                                        id="exampleModalLabel">
+                                        Modal title
+                                    </h5>
+                                    <button type="button" class="close"
+                                            data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div hidden class="modal-brandcollid">
+                                    <input required asp-for="BrandCollectionId" type="text" />
+                                </div>
+                                <div class="modal-body">
+                                    <input required asp-for="FurName"
+                                           class="form-control"
+                                           type="text" formmethod="post" />
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <input type="submit" class="btn btn-outline-success btn-sm m-0" value="AddFurName" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>                
+            </td>
+            <td>
+                <button type="button"
+                        class="btn btn-outline-success btn-sm m-0"
+                        data-toggle="modal"
+                        data-brandcollname="@brandCollection.Name"
+                        data-collectionid="@brandCollection.Id"
+                        data-target="#BrandCollectionFinishing">
+                    AddFishing
+                </button>
+                <form asp-controller="Nomenclature"
+                      asp-action="CreateFinishing" method="post">
+                    <div class="modal fade" id="BrandCollectionFinishing" tabindex="-1"
+                         role="dialog" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title"
+                                        id="exampleModalLabel">
+                                        Modal title
+                                    </h5>
+                                    <button type="button" class="close"
+                                            data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div hidden class="modal-brandcollid">
+                                    <input required asp-for="BrandCollectionId" type="text" />
+                                </div>
+                                <div class="modal-body">
+                                    <input required asp-for="FinishingName"
+                                           class="form-control"
+                                           type="text" formmethod="post" />
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <input type="submit" class="btn btn-outline-success btn-sm m-0" value="AddFurName" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </form>
-                
-            </td>
-            <td>
-                
-            </td>
-            <td><input type="text" /></td>
-            <td>
-                <button type="button" 
-                        class="btn btn-outline-success btn-sm m-0">AddFishing</button>
             </td>
             <td>
                 <a class="btn btn-outline-danger btn-sm m-0"  
@@ -43,66 +110,3 @@
         }
     </tbody>
 </table>
-
-@*<div class="card card-body">
-    <h2>Collections</h2>
-    <table class="table table-sm">
-        <tr>
-            <th>BrandName</th>
-            <th>CollectionName</th>
-            <th>
-        </tr>
-        @foreach (BrandCollectionBrandNameViewModel brandCollection in Model.BrandCollectionBrandNameViewModels)
-        {
-    <tr>
-        <td>@brandCollection.BrandName</td>
-        <td>@brandCollection.Name</td>
-        <td>
-            <button type="button" class="btn btn-primary"><i class="far fa-eye"></i>D</button>
-            <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-            <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
-        </td>
-    </tr>
-
-
-            <div class="container-fluid border">
-            <div class="row">
-                <div class="col-sm-3">
-                    <a>
-                        @brandCollection.BrandName
-                    </a>
-                </div>
-                <div class="col-sm-3">
-                    <a>
-                        @brandCollection.Name
-                    </a>
-                </div>
-                <div class="col-sm-2">
-                    <a class="btn btn-sm btn-primary" asp-controller="Nomenclature"
-                       asp-action="DeleteBrandCollection" asp-route-id="@brandCollection.Id">Delete</a>
-                </div>
-                <div class="col-sm-2">
-                    <a class="btn btn-sm btn-outline-dark" asp-controller="Nomenclature"
-                       asp-action="DeleteBrandCollection" asp-route-id="@brandCollection.Id">AddFurMame</a>
-                </div>
-                <div class="col-sm-2">
-                    <a class="btn btn-sm btn-secondary" asp-controller="Nomenclature"
-                       asp-action="DeleteBrandCollection" asp-route-id="@brandCollection.Id">AddFishing</a>
-                </div>
-            </div>
-
-        </div>
-        }
-    </table>
-        <form asp-action="CreateBrandCollection" asp-controller="Nomenclature" asp-route-Id="@Model.Id">
-            <div class="form-group m-3">
-                <label class="control-label">Название</label>
-                <input type="text" asp-for="BrandCollectionName" class="form-control" />
-            </div>
-
-            <div class="form-group">
-                <input type="submit" value="Add BrandCollection" class="btn btn-default" />
-            </div>
-        </form>
-    </div>*@
-

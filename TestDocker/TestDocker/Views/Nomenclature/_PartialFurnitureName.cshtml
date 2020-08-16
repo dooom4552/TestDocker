@@ -1,0 +1,28 @@
+﻿@model TestDocker.ViewsModels.EditNomenclatureViewModel
+
+<table class="table-sm table-striped table-responsive-md btn-table">
+    <thead>
+        <tr>
+            <th colspan="2" class="text-center">FurnitureNames</th>
+        </tr>
+        <tr>
+            <td>Brand\Collection\FurnitureName</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (FurnitureName furnitureName in Model.FurnitureNames)
+        {
+            <tr>
+                <td scope="row">
+                    @furnitureName.Name
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-outline-danger"
+                       asp-controller="Nomenclature"
+                       asp-action="DeleteFurnitureName"
+                       asp-route-id="@furnitureName.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

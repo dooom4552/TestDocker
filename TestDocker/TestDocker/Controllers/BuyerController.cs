@@ -50,7 +50,7 @@ namespace TestDocker.Controllers
                 {
                     db.Buyers.Remove(buyer);
                     await db.SaveChangesAsync();
-                    return RedirectToAction("Index", "Nomenclature");
+                    return RedirectToAction("Add", "Nomenclature");
                 }
             }
             return NotFound();
@@ -71,7 +71,7 @@ namespace TestDocker.Controllers
                 await db.SaveChangesAsync();
 
             }
-            return RedirectToAction("Index", "Nomenclature");
+            return RedirectToAction("Add", "Nomenclature");
         }
 
     }

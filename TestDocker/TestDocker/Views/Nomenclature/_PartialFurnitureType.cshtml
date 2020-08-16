@@ -1,36 +1,43 @@
 ﻿@model TestDocker.ViewsModels.EditNomenclatureViewModel
-<div class="card card-body">
 
-    @foreach (FurnitureType furnitureType in Model.FurnitureTypes)
-    {
-        <div class="container-fluid">
-            <div class="row m-1">
-                <div class="col-1">
-                    <a>
-                        @furnitureType.Id
-                    </a>
-                </div>
-                <div class="col-3">
-                    <a>
-                        @furnitureType.Name
-                    </a>
-                </div>
-                <div class="col-7">
-                    <a class="btn btn-sm btn-primary" asp-controller="FurnitureType"
-                       asp-action="DeleteFurnitureType" asp-route-id="@furnitureType.Id">Удалить</a>
-                </div>
-            </div>
+<table class="table-sm table-striped table-responsive-md btn-table">
+    <thead>
+        <tr>
+            <th colspan="2" class="text-center">FurnitureTypes</th>
+        </tr>
+        <tr>
+            <td>FurnitureType</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (FurnitureType furnitureType in Model.FurnitureTypes)
+        {
+            <tr>
+                <td scope="row">
+                    @furnitureType.Name
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-outline-danger"
+                       asp-controller="FurnitureType"
+                       asp-action="DeleteFurnitureType"
+                       asp-route-id="@furnitureType.Id">Delete</a>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td colspan="2">
+                <form asp-action="CreateFurnitureType" asp-controller="FurnitureType">
+                    <div class="form-group m-2">
+                        <label class="control-label">Name</label>
+                        <input required type="text" asp-for="Name" class="form-control" />
+                    </div>
 
-        </div>
-    }
-    <form asp-action="CreateFurnitureType" asp-controller="FurnitureType">
-        <div class="form-group m-3">
-            <label class="control-label">Название</label>
-            <input type="text" asp-for="Name" class="form-control" />
-        </div>
-
-        <div class="form-group">
-            <input type="submit" value="Добавить тип изделия" class="btn btn-default" />
-        </div>
-    </form>
-</div>
+                    <div class="form-group">
+                        <input type="submit" value="Add FurnitureType"
+                               class="btn btn-outline-success btn-sm" />
+                    </div>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>

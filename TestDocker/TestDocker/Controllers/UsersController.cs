@@ -10,7 +10,7 @@ using TestDocker.ViewsModels;
 
 namespace TestDocker.Controllers
 {
-    [Authorize(Roles = "director")]
+    //[Authorize(Roles = "director")]
     public class UsersController : Controller
     {
         readonly UserManager<User> _userManager;

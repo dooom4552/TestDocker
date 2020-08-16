@@ -27,13 +27,13 @@
             <h4>Всего: @Model.Finishings.Count</h4>
         }
 
-        else
+        @if (Model.FurnitureNames.Count == 0 && Model.Finishings.Count == 0) 
         {
-            <form asp-action="DeleteBrandCollection" asp-route-id="@Model.Id" method="post">
-                <div class="form-group">
-                    <input type="submit" class="btn btn-danger" value="Удалить" />
-                </div>
-            </form>
+        <form asp-action="DeleteBrandCollection" asp-route-id="@Model.Id" method="post">
+            <div class="form-group">
+                <input type="submit" class="btn btn-danger" value="Удалить" />
+            </div>
+        </form>
         }
     </div>
 </div>
