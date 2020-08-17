@@ -40,12 +40,22 @@ $('#BrandCollectionFinishing').on('show.bs.modal', function (event) {
 
 // Write your JavaScript code.
 $('#productModal').on('show.bs.modal', function (event) {
-    var modal = $('#productModal');
-    var button = $(event.relatedTarget) // Button that triggered the modal   
+    let modal = $('#productModal');
+    var button = $(event.relatedTarget) // Button that triggered the modal 
+
+    modal.find('#lab2').hide();
     modal.find('#seltest2').hide();
+
+    modal.find('#seltest3').hide();   
+    modal.find('#lab3').hide();
+
+    modal.find('#lab4').hide();
+    modal.find('#seltest4').hide(); 
 })
 function BrandCollectionFilter() {
-    var ArrayCollBrands = new Array();
+    
+
+    let ArrayCollBrands = new Array();
     for (i = 0; i < BrandCollNames.length; i++) {
 
         ArrayCollBrands.push({
@@ -54,31 +64,43 @@ function BrandCollectionFilter() {
             BrandId: BrandId[i]
         })
     }
-    var modal = $('#productModal');
-    var value = modal.find('#seltest1 option:selected').val();
+    let modal = $('#productModal');
+    let value = modal.find('#seltest1 option:selected').val();
 
-    var ArrayCollBrandsFilter = ArrayCollBrands.filter(function (colbrand) {
+    let ArrayCollBrandsFilter = ArrayCollBrands.filter(function (colbrand) {
         return colbrand.BrandId == value;
     })
     modal.find('#seltest2 option:contains()').remove();
     if (ArrayCollBrandsFilter.length > 0) {
         modal.find('#seltest2').show();
+        modal.find('#lab2').show();
     }
     else {
         modal.find('#seltest2').hide();
+        modal.find('#lab2').hide();
     }
 
-
-    for (var i = 0; i < ArrayCollBrandsFilter.length; i++) {
+    for (i = 0; i < ArrayCollBrandsFilter.length; i++) {
         modal.find('#seltest2').prepend('<option value="' + ArrayCollBrandsFilter[i].Id + '">' + ArrayCollBrandsFilter[i].Name + '</option>');
     };
+    modal.find('#seltest2').prepend('<option value="" disabled> select collection </option>');
+
     modal.find('#seltest3 option:contains()').remove();
+    modal.find('#seltest4 option:contains()').remove();
+
+    modal.find('#lab3').hide();
     modal.find('#seltest3').hide();
+
+    modal.find('#lab4').hide();
+    modal.find('#seltest4').hide();
+    
+    resetselect2();
+
     productHeader();
 }
 
 function FurnitureNameFilter() {
-    var ArrayFurnitureNames = new Array();
+    let ArrayFurnitureNames = new Array();
     for (i = 0; i < FurnitureNames.length; i++) {
 
         ArrayFurnitureNames.push({
@@ -87,8 +109,8 @@ function FurnitureNameFilter() {
             BrandColldId: FurnitureNameBrandColldId[i]
         })
     }
-    var modal = $('#productModal');
-    var value = modal.find('#seltest2 option:selected').val();
+    let modal = $('#productModal');
+    let value = modal.find('#seltest2 option:selected').val();
 
     var ArrayFurnitureNamesFilter = ArrayFurnitureNames.filter(function (furname) {
         return furname.BrandColldId == value;
@@ -96,17 +118,58 @@ function FurnitureNameFilter() {
 
     modal.find('#seltest3 option:contains()').remove();
     if (ArrayFurnitureNamesFilter.length > 0) {
+        modal.find('#lab3').show();
         modal.find('#seltest3').show();
     }
     else {
+        modal.find('#lab3').hide();
         modal.find('#seltest3').hide();
     }
 
-    for (var i = 0; i < ArrayFurnitureNamesFilter.length; i++) {
+    for (i = 0; i < ArrayFurnitureNamesFilter.length; i++) {
         modal.find('#seltest3').prepend('<option value="' + ArrayFurnitureNamesFilter[i].Id + '">' + ArrayFurnitureNamesFilter[i].Name + '</option>');
     };
+    modal.find('#seltest3').prepend('<option value="" disabled> select furniture </option>');
     productHeader();
 }
+
+function FinishingFilter() {
+    let ArrayFinishing = new Array();
+    for (i = 0; i < FinishingNames.length; i++) {
+
+        ArrayFinishing.push({
+            Id: FinishingId[i],
+            Name: FinishingNames[i],
+            BrandColldId: FinishingBrandColldId[i]
+        })
+    }
+    let modal = $('#productModal');
+    let value = modal.find('#seltest2 option:selected').val();
+
+    var ArrayFinishingFilter = ArrayFinishing.filter(function (finish) {
+        return finish.BrandColldId == value;
+    })
+
+    modal.find('#seltest4 option:contains()').remove();
+    if (ArrayFinishingFilter.length > 0) {
+        modal.find('#lab4').show();
+        modal.find('#seltest4').show();
+    }
+    else {
+        modal.find('#lab4').hide();
+        modal.find('#seltest4').hide();
+    }
+
+    for ( i = 0; i < ArrayFinishingFilter.length; i++) {
+        modal.find('#seltest4').prepend('<option value="' + ArrayFinishingFilter[i].Id + '">' + ArrayFinishingFilter[i].Name + '</option>');
+    };
+    modal.find('#seltest4').prepend('<option value="" disabled> select finish </option>');
+    productHeader();
+}
+
+
+
+
 
 function productHeader() {
     var modal = $('#productModal');
@@ -115,3 +178,22 @@ function productHeader() {
     var furniturename = modal.find('#seltest3 option:selected').text();
     modal.find('.modal-product').text(namebrand + '.' + namecollbrand + '.' + furniturename);
 }
+
+function resetselect1() {
+    var modal = $('#productModal');
+    modal.find('#seltest1 option:first').prop('selected', true);
+}
+function resetselect2() {
+    var modal = $('#productModal');
+    modal.find('#seltest2 option:first').prop('selected', true);
+}
+function resetselect3() {
+    var modal = $('#productModal');
+    modal.find('#seltest3 option:first').prop('selected', true);
+}
+function resetselect4() {
+    var modal = $('#productModal');
+    modal.find('#seltest4 option:first').prop('selected', true);
+}
+
+

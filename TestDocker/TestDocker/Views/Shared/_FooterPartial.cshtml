@@ -36,8 +36,6 @@
         FinishingBrandColldId.Add(item.CollectionId);
     }
 
-
-
     <script>
         var BrandCollNames = @Json.Serialize(BrandCollNames);
         var BrandCollId = @Json.Serialize(BrandColldId);
@@ -50,19 +48,20 @@
         var FinishingNames = @Json.Serialize(FinishingNames);
         var FinishingId = @Json.Serialize(FinishingId);
         var FinishingBrandColldId = @Json.Serialize(FinishingBrandColldId);
-
-
     </script>
+
     <div class="row">
         <button type="button"
                 class="btn btn-outline-success btn-sm m-0"
                 data-toggle="modal"
-                data-target="#productModal">
+                data-target="#productModal"
+                onclick="resetselect1(); resetselect2(); resetselect3(); resetselect4();">
             AddProduct
         </button>
         <form asp-controller="Nomenclature"
               asp-action="CreateBrandCollection">
             <div class="modal fade" id="productModal" tabindex="-1"
+                 data-backdrop="static"
                  role="dialog" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog">
@@ -84,25 +83,32 @@
                             <h5 class="modal-product">
                             </h5>
                             <div class="form-group">
-
+                                <label class="mdb-main-label m-2">Brand</label>
                                 <select id="seltest1"
-                                        
                                         onchange="BrandCollectionFilter();"
                                         class="form-control">
+                                    <option value="" disabled selected>select brand</option>
                                     @foreach (var item in Model.Brands)
                                     {
-                                       
                                         <option value="@item.Id">@item.Name</option>
                                     }
                                 </select>
 
-
+                                <label id="lab2" class="mdb-main-label m-2">Collection</label>
                                 <select id="seltest2"
                                         class="form-control"
-                                        onchange="FurnitureNameFilter();">
+                                        onchange="FurnitureNameFilter(); FinishingFilter();">
+                                    <option value="" disabled selected>select collection</option>
                                 </select>
+                                <label id="lab3" class="mdb-main-label m-2">FurnitureName</label>
                                 <select id="seltest3"
                                         class="form-control">
+                                    <option value="" disabled selected>select furniture</option>
+                                </select>
+                                <label id="lab4" class="mdb-main-label m-2">Finishing</label>
+                                <select id="seltest4"
+                                        class="form-control">
+                                    <option value="" disabled selected>select finish</option>
                                 </select>
 
                             </div>

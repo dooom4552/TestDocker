@@ -110,7 +110,7 @@ namespace TestDocker.Controllers
                     return View(model);
                 }
             }
-            return NotFound();
+            return RedirectToAction("Add");
         }
 
         [HttpPost]
@@ -126,7 +126,7 @@ namespace TestDocker.Controllers
                     return RedirectToAction("Add");
                 }
             }
-            return NotFound();
+            return RedirectToAction("Add");
         }
 
         [HttpPost]
@@ -141,10 +141,9 @@ namespace TestDocker.Controllers
                     Name = model.Name
                 };
                 db.Brands.Add(_brand);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Add");
+                await db.SaveChangesAsync();                
             }
-            return NotFound();
+            return RedirectToAction("Add");
         }
 
         [HttpGet]
@@ -161,7 +160,7 @@ namespace TestDocker.Controllers
                 };
                 return View(brandViewModel);
             }
-            return NotFound();
+            return RedirectToAction("Add");
         }
 
         [HttpPost]
@@ -179,10 +178,9 @@ namespace TestDocker.Controllers
                     BrandId = model.BrandId
                 };
                 db.BrandCollections.Add(_brandCollection);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Add");
+                await db.SaveChangesAsync();                
             }
-            return NotFound();
+            return RedirectToAction("Add");
         }
 
         [HttpGet]
@@ -217,11 +215,10 @@ namespace TestDocker.Controllers
                 if (brandCollection != null)
                 {
                     db.BrandCollections.Remove(brandCollection);
-                    await db.SaveChangesAsync();
-                    return RedirectToAction("Add");
+                    await db.SaveChangesAsync();                   
                 }
             }
-            return NotFound();
+            return RedirectToAction("Add");
         }
 
         [HttpPost]
@@ -230,6 +227,7 @@ namespace TestDocker.Controllers
             //string name = await GetNameById.GetBrandCollectionName(db, model.BrandCollectionId);
             //name = name + "\\" + model.FurName;
             FurnitureName furnitureName = await db.FurnitureNames
+                .Where(f => f.CollectionId == model.BrandCollectionId)
                 .FirstOrDefaultAsync(f => f.Name == model.FurName);
             if (furnitureName == null)
             {
@@ -239,10 +237,9 @@ namespace TestDocker.Controllers
                     Name = model.FurName
                 };
                 db.FurnitureNames.Add(_furnitureName);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Add");
+                await db.SaveChangesAsync();               
             }
-            return NotFound();
+            return RedirectToAction("Add");
         }
 
         [HttpGet]
@@ -264,7 +261,7 @@ namespace TestDocker.Controllers
                     return View(model);
                 }               
             }
-            return NotFound();
+            return RedirectToAction("Add");
         }
 
         [HttpPost]
@@ -277,11 +274,10 @@ namespace TestDocker.Controllers
                 if (furnitureName != null)
                 {
                     db.FurnitureNames.Remove(furnitureName);
-                    await db.SaveChangesAsync();
-                    return RedirectToAction("Add");
+                    await db.SaveChangesAsync();                   
                 }
             }
-            return NotFound();
+            return RedirectToAction("Add");
         }
 
         [HttpPost]
@@ -290,6 +286,7 @@ namespace TestDocker.Controllers
             //string name = await GetNameById.GetBrandCollectionName(db, model.BrandCollectionId);
             //name = name + "\\" + model.FinishingName;
             Finishing finishing = await db.Finishings
+                .Where(f => f.CollectionId == model.BrandCollectionId)
                 .FirstOrDefaultAsync(f => f.Name == model.FinishingName);
             if (finishing == null)
             {
@@ -299,10 +296,9 @@ namespace TestDocker.Controllers
                     Name = model.FinishingName
                 };
                 db.Finishings.Add(_finishing);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Add");
+                await db.SaveChangesAsync();               
             }
-            return NotFound();
+            return RedirectToAction("Add");
         }
 
         [HttpGet]
@@ -324,7 +320,7 @@ namespace TestDocker.Controllers
                     return View(model);
                 }
             }
-            return NotFound();
+            return RedirectToAction("Add");
         }
 
         [HttpPost]
@@ -337,11 +333,10 @@ namespace TestDocker.Controllers
                 if (finishing != null)
                 {
                     db.Finishings.Remove(finishing);
-                    await db.SaveChangesAsync();
-                    return RedirectToAction("Add");
+                    await db.SaveChangesAsync();                    
                 }
             }
-            return NotFound();
+            return RedirectToAction("Add");
         }
     }
 }
