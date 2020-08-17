@@ -3,24 +3,24 @@
 <table class="table-sm table-striped table-responsive-md btn-table">
     <thead>
         <tr>
-            <th colspan="2" class="text-center">Finnishings</th>
+            <th colspan="2" class="text-center">Finishings</th>
         </tr>
         <tr>
-            <td>Brand\Collection\Finnishing</td>
+            <td>Brand.Collection.Finishing</td>
         </tr>
     </thead>
     <tbody>
-        @foreach (Finishing finishing in Model.Finishings)
+        @foreach (FinishingViewModel finishingViewModel in Model.FinishingViewModels) 
         {
             <tr>
                 <td scope="row">
-                    @finishing.Name
+                    @finishingViewModel.BrandName.@finishingViewModel.CollectionName.@finishingViewModel.Name
                 </td>
                 <td>
                     <a class="btn btn-sm btn-outline-danger"
                        asp-controller="Nomenclature"
                        asp-action="DeleteFinishing"
-                       asp-route-id="@finishing.Id">Delete</a>
+                       asp-route-id="@finishingViewModel.Id">Delete</a>
                 </td>
             </tr>
         }

@@ -15,9 +15,9 @@ namespace TestDocker.ViewsModels
         public List<Brand> Brands { get; set; }
         
         public List<BrandCollectionBrandNameViewModel> BrandCollectionBrandNameViewModels { get; set; }
-        public List<FurnitureName> FurnitureNames { get; set; }
+        public List<FurnitureNameViewModel> FurnitureNameViewModels{ get; set; }
         public List<FurnitureType> FurnitureTypes { get; set; }
-        public List<Finishing> Finishings { get; set; }
+        public List<FinishingViewModel> FinishingViewModels { get; set; }
         public List<Buyer> Buyers { get; set; }       
         public string BrandCollectionName { get; set; } 
         public string FinishingName { get; set; }

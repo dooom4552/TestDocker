@@ -1,44 +1,62 @@
 ﻿@model TestDocker.ViewsModels.EditNomenclatureViewModel
 <div class="container-fluid">
-    <div class="row">
-        @{
-            List<string> test = new List<string>();
-            foreach (var brand in Model.Brands)
-            {
-                test.Add(brand.Name);
-            }
-        }
-        @foreach (var item in test)
-        {
-            <table>
-                <tr>
-                    <td>@item</td>
-                </tr>
-            </table>
-        }
-    <script>
-        function SectionFilter() {
-            var brands = @Json.Serialize(Model.Brands);
-        }
+    @{
+        List<string> BrandCollNames = new List<string>();
+        List<int> BrandColldId = new List<int>();
+        List<int> BrandId = new List<int>();
 
-        for (var i = 0; i < brands.length; i++) {           
-            $('#subselect').prepend('<option value="' + i + '">' + brands[i] + '</option>');
-        };
-        SubSectionFilter();
+        List<string> FurnitureNames = new List<string>();
+        List<int> FurnitureNamesId = new List<int>();
+        List<int> FurnitureNameBrandColldId = new List<int>();
+        
+        List<string> FinishingNames = new List<string>();
+        List<int> FinishingId = new List<int>();
+        List<int> FinishingBrandColldId = new List<int>();
+
+    }
+    @foreach (var item in Model.BrandCollectionBrandNameViewModels)
+    {
+        BrandCollNames.Add(item.Name);
+        BrandColldId.Add(item.Id);
+        BrandId.Add(item.BrandId);
+    }
+    
+
+    @foreach(var item  in Model.FurnitureNameViewModels)
+    {
+        FurnitureNames.Add(item.Name);
+        FurnitureNamesId.Add(item.Id);
+        FurnitureNameBrandColldId.Add(item.CollectionId);
+    }
+    
+    @foreach(var item  in Model.FinishingViewModels)
+    {
+        FinishingNames.Add(item.Name);
+        FinishingId.Add(item.Id);
+        FinishingBrandColldId.Add(item.CollectionId);
+    }
+
+
+
+    <script>
+        var BrandCollNames = @Json.Serialize(BrandCollNames);
+        var BrandCollId = @Json.Serialize(BrandColldId);
+        var BrandId = @Json.Serialize(BrandId);
+
+        var FurnitureNames = @Json.Serialize(FurnitureNames);
+        var FurnitureNamesId = @Json.Serialize(FurnitureNamesId);
+        var FurnitureNameBrandColldId = @Json.Serialize(FurnitureNameBrandColldId);
+
+        var FinishingNames = @Json.Serialize(FinishingNames);
+        var FinishingId = @Json.Serialize(FinishingId);
+        var FinishingBrandColldId = @Json.Serialize(FinishingBrandColldId);
+
 
     </script>
-        <select id="sel1">
-
-        </select>
-
-        <button type="button"  onclick="SectionFilter();"
+    <div class="row">
+        <button type="button"
                 class="btn btn-outline-success btn-sm m-0"
                 data-toggle="modal"
-                @*data-brands="@Model.Brands"*@
-                data-test="44"
-                @*data-furnitureNames="@Model.FurnitureNames"
-                data-furnitureTypes="@Model.FurnitureTypes"
-                data-finishings="@Model.Finishings"*@
                 data-target="#productModal">
             AddProduct
         </button>
@@ -52,7 +70,7 @@
                         <div class="modal-header">
                             <h5 class="modal-title"
                                 id="exampleModalLabel">
-                                Modal title
+                                Add Product
                             </h5>
                             <button type="button" class="close"
                                     data-dismiss="modal" aria-label="Close">
@@ -63,18 +81,52 @@
                             <input required asp-for="BrandId" type="text" />
                         </div>
                         <div class="modal-body">
-                            <select class="mdb-select md-form colorful-select dropdown-primary">
-                            </select>
-                            <label class="mdb-main-label">Blue select</label>
+                            <h5 class="modal-product">
+                            </h5>
+                            <div class="form-group">
 
+                                <select id="seltest1"
+                                        
+                                        onchange="BrandCollectionFilter();"
+                                        class="form-control">
+                                    @foreach (var item in Model.Brands)
+                                    {
+                                       
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+
+
+                                <select id="seltest2"
+                                        class="form-control"
+                                        onchange="FurnitureNameFilter();">
+                                </select>
+                                <select id="seltest3"
+                                        class="form-control">
+                                </select>
+
+                            </div>
+
+
+                            <label class="mdb-main-label">ComeDocumentName</label>
                             <input required asp-for="BrandCollectionName"
                                    class="form-control"
                                    type="text" formmethod="post" />
 
+                            <label class="mdb-main-label">ComePrice</label>
+                            <input required asp-for="BrandCollectionName"
+                                   class="form-control"
+                                   type="number" formmethod="post" />
+
+                            <label class="mdb-main-label">Quantity</label>
+                            <input required asp-for="BrandCollectionName"
+                                   class="form-control"
+                                   type="number" formmethod="post" />
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <input type="submit" class="btn btn-outline-success btn-sm m-0" value="AddColl" />
+                            <input type="submit" class="btn btn-outline-success btn-sm m-0" value="AddProduct" />
                         </div>
                     </div>
                 </div>

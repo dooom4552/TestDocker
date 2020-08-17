@@ -6,21 +6,20 @@
             <th colspan="2" class="text-center">FurnitureNames</th>
         </tr>
         <tr>
-            <td>Brand\Collection\FurnitureName</td>
+            <td>Brand.Collection.FurnitureName</td>
         </tr>
     </thead>
     <tbody>
-        @foreach (FurnitureName furnitureName in Model.FurnitureNames)
+        @foreach (FurnitureNameViewModel furnitureNameViewModel in Model.FurnitureNameViewModels)
         {
             <tr>
-                <td scope="row">
-                    @furnitureName.Name
+                <td scope="row">@furnitureNameViewModel.BrandName.@furnitureNameViewModel.CollectionName.@furnitureNameViewModel.Name
                 </td>
                 <td>
                     <a class="btn btn-sm btn-outline-danger"
                        asp-controller="Nomenclature"
                        asp-action="DeleteFurnitureName"
-                       asp-route-id="@furnitureName.Id">Delete</a>
+                       asp-route-id="@furnitureNameViewModel.Id">Delete</a>
                 </td>
             </tr>
         }

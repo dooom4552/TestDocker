@@ -28,9 +28,7 @@ namespace TestDocker.Controllers
             EditNomenclatureViewModel model = new EditNomenclatureViewModel()
             {
                 Brands = await db.Brands.ToListAsync(),
-                FurnitureNames = await db.FurnitureNames.ToListAsync(),
-                FurnitureTypes = await db.FurnitureTypes.ToListAsync(),
-                Finishings = await db.Finishings.ToListAsync(),
+                FurnitureTypes = await db.FurnitureTypes.ToListAsync(),                
                 Buyers = await db.Buyers.ToListAsync()
             };
             List<BrandCollection> BrandCollections = await db.BrandCollections.ToListAsync();
@@ -46,6 +44,36 @@ namespace TestDocker.Controllers
                 });
             }
             model.BrandCollectionBrandNameViewModels = _BrandCollectionsVM;
+
+            List<FurnitureName> FurnitureNames = await db.FurnitureNames.ToListAsync();
+            List<FurnitureNameViewModel> _FurnitureNames = new List<FurnitureNameViewModel>();
+            foreach (FurnitureName furnitureName in FurnitureNames)
+            {
+                _FurnitureNames.Add(new FurnitureNameViewModel() 
+                { 
+                    Id = furnitureName.Id,
+                    Name = furnitureName.Name,
+                    BrandName = await GetNameById.GetBrandNameByCollectionId(db, furnitureName.CollectionId),
+                    CollectionName = await GetNameById.GetBrandCollectionName(db, furnitureName.CollectionId),
+                    CollectionId = furnitureName.CollectionId
+                });
+            }
+            model.FurnitureNameViewModels = _FurnitureNames;
+
+            List<Finishing> finishings = await db.Finishings.ToListAsync();
+            List<FinishingViewModel> finishingViewModels = new List<FinishingViewModel>();
+            foreach(Finishing finishing in finishings)
+            {
+                finishingViewModels.Add(new FinishingViewModel() 
+                { 
+                    Id = finishing.Id,
+                    Name = finishing.Name,
+                    BrandName = await GetNameById.GetBrandNameByCollectionId(db, finishing.CollectionId),
+                    CollectionName = await GetNameById.GetBrandCollectionName(db, finishing.CollectionId),
+                    CollectionId = finishing.CollectionId
+                });
+            }
+            model.FinishingViewModels = finishingViewModels;
             return View(model);
         }
 
@@ -55,9 +83,9 @@ namespace TestDocker.Controllers
             EditNomenclatureViewModel model = new EditNomenclatureViewModel()
             {
                 Brands = await db.Brands.ToListAsync(),
-                FurnitureNames = await db.FurnitureNames.ToListAsync(),
+                //FurnitureNames = await db.FurnitureNames.ToListAsync(),
                 FurnitureTypes = await db.FurnitureTypes.ToListAsync(),
-                Finishings = await db.Finishings.ToListAsync(),
+                //Finishings = await db.Finishings.ToListAsync(),
                 Buyers = await db.Buyers.ToListAsync()
             };
 
@@ -139,15 +167,15 @@ namespace TestDocker.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateBrandCollection(EditNomenclatureViewModel model)
         {
-            string name = await GetNameById.GetBrandNameById(db, model.BrandId);
-            name = name + "\\" + model.BrandCollectionName;
-            BrandCollection brandCollection = await db.BrandCollections.FirstOrDefaultAsync(u => u.Name == name);
+            //string name = await GetNameById.GetBrandNameById(db, model.BrandId);
+            //name = name + "\\" + model.BrandCollectionName;
+            BrandCollection brandCollection = await db.BrandCollections.FirstOrDefaultAsync(u => u.Name == model.BrandCollectionName);
 
             if (brandCollection == null)
             {
                 BrandCollection _brandCollection = new BrandCollection()
                 {
-                    Name = name,
+                    Name = model.BrandCollectionName,
                     BrandId = model.BrandId
                 };
                 db.BrandCollections.Add(_brandCollection);
@@ -199,8 +227,8 @@ namespace TestDocker.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateFurName(EditNomenclatureViewModel model)
         {
-            string name = await GetNameById.GetBrandCollectionName(db, model.BrandCollectionId);
-            name = name + "\\" + model.FurName;
+            //string name = await GetNameById.GetBrandCollectionName(db, model.BrandCollectionId);
+            //name = name + "\\" + model.FurName;
             FurnitureName furnitureName = await db.FurnitureNames
                 .FirstOrDefaultAsync(f => f.Name == model.FurName);
             if (furnitureName == null)
@@ -208,7 +236,7 @@ namespace TestDocker.Controllers
                 FurnitureName _furnitureName = new FurnitureName
                 {
                     CollectionId = model.BrandCollectionId,
-                    Name = name
+                    Name = model.FurName
                 };
                 db.FurnitureNames.Add(_furnitureName);
                 await db.SaveChangesAsync();
@@ -259,8 +287,8 @@ namespace TestDocker.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateFinishing(EditNomenclatureViewModel model)
         {
-            string name = await GetNameById.GetBrandCollectionName(db, model.BrandCollectionId);
-            name = name + "\\" + model.FinishingName;
+            //string name = await GetNameById.GetBrandCollectionName(db, model.BrandCollectionId);
+            //name = name + "\\" + model.FinishingName;
             Finishing finishing = await db.Finishings
                 .FirstOrDefaultAsync(f => f.Name == model.FinishingName);
             if (finishing == null)
@@ -268,7 +296,7 @@ namespace TestDocker.Controllers
                 Finishing _finishing = new Finishing 
                 {
                     CollectionId = model.BrandCollectionId,
-                    Name = name
+                    Name = model.FinishingName
                 };
                 db.Finishings.Add(_finishing);
                 await db.SaveChangesAsync();

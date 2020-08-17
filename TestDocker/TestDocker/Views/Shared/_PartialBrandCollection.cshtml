@@ -6,14 +6,14 @@
             <th colspan="5" class="text-center">Collections</th>
         </tr>
         <tr>
-            <td>Brand\Collection</td>
+            <td>Brand.Collection</td>
         </tr>
     </thead>
     <tbody>
         @foreach (BrandCollectionBrandNameViewModel brandCollection in Model.BrandCollectionBrandNameViewModels)
         {
         <tr>
-            <td>@brandCollection.Name</td>
+            <td>@brandCollection.BrandName.@brandCollection.Name</td>
             <td>
                 <button type="button"
                         class="btn btn-outline-success btn-sm m-0"
@@ -31,10 +31,10 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title"
-                                        id="exampleModalLabel">
-                                        Modal title
+                                    <h5>
+                                        AddFurName
                                     </h5>
+
                                     <button type="button" class="close"
                                             data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
@@ -44,6 +44,10 @@
                                     <input required asp-for="BrandCollectionId" type="text" />
                                 </div>
                                 <div class="modal-body">
+                                    <h5 class="modal-title"
+                                        id="exampleModalLabel">
+                                        Modal title
+                                    </h5>
                                     <input required asp-for="FurName"
                                            class="form-control"
                                            type="text" formmethod="post" />
@@ -64,7 +68,7 @@
                         data-brandcollname="@brandCollection.Name"
                         data-collectionid="@brandCollection.Id"
                         data-target="#BrandCollectionFinishing">
-                    AddFishing
+                    AddFinishing
                 </button>
                 <form asp-controller="Nomenclature"
                       asp-action="CreateFinishing" method="post">
@@ -74,10 +78,10 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title"
-                                        id="exampleModalLabel">
-                                        Modal title
+                                    <h5>
+                                        AddFinishing
                                     </h5>
+                                    
                                     <button type="button" class="close"
                                             data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
@@ -87,13 +91,17 @@
                                     <input required asp-for="BrandCollectionId" type="text" />
                                 </div>
                                 <div class="modal-body">
+                                    <h5 class="modal-title"
+                                        id="exampleModalLabel">
+                                        
+                                    </h5>
                                     <input required asp-for="FinishingName"
                                            class="form-control"
                                            type="text" formmethod="post" />
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <input type="submit" class="btn btn-outline-success btn-sm m-0" value="AddFurName" />
+                                    <input type="submit" class="btn btn-outline-success btn-sm m-0" value="AddFinishing" />
                                 </div>
                             </div>
                         </div>

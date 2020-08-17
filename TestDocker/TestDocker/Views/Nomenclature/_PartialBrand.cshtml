@@ -32,11 +32,11 @@
                                  aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title"
-                                                id="exampleModalLabel">
-                                                Modal title 
-                                            </h5>
+                                        <div class="modal-header">                                        
+                                                <h5>
+                                                    AddCollection
+                                                </h5>                                           
+                                                                                                                                   
                                             <button type="button" class="close" 
                                                     data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
@@ -46,8 +46,10 @@
                                             <input  required asp-for="BrandId" type="text" />
                                         </div>
                                         <div class="modal-body">
-                                          
-                                            <input required asp-for="BrandCollectionName" 
+                                            <h5 class="modal-title"
+                                                id="exampleModalLabel">
+                                            </h5>
+                                            <input required asp-for="BrandCollectionName"
                                                    class="form-control"
                                                    type="text" formmethod="post" />
                                         </div>
