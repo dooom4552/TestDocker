@@ -130,6 +130,8 @@ function FurnitureNameFilter() {
         modal.find('#seltest3').prepend('<option value="' + ArrayFurnitureNamesFilter[i].Id + '">' + ArrayFurnitureNamesFilter[i].Name + '</option>');
     };
     modal.find('#seltest3').prepend('<option value="" disabled> select furniture </option>');
+    resetselect3(); 
+     
     productHeader();
 }
 
@@ -164,6 +166,7 @@ function FinishingFilter() {
         modal.find('#seltest4').prepend('<option value="' + ArrayFinishingFilter[i].Id + '">' + ArrayFinishingFilter[i].Name + '</option>');
     };
     modal.find('#seltest4').prepend('<option value="" disabled> select finish </option>');
+    resetselect4();
     productHeader();
 }
 
@@ -172,11 +175,17 @@ function FinishingFilter() {
 
 
 function productHeader() {
-    var modal = $('#productModal');
-    var namebrand = modal.find('#seltest1 option:selected').text();
-    var namecollbrand = modal.find('#seltest2 option:selected').text();
-    var furniturename = modal.find('#seltest3 option:selected').text();
-    modal.find('.modal-product').text(namebrand + '.' + namecollbrand + '.' + furniturename);
+    let modal = $('#productModal');
+    let namebrand = modal.find('#seltest1 option:selected').text();
+    let namecollbrand = modal.find('#seltest2 option:selected').text();
+    let furniturename = modal.find('#seltest3 option:selected').text();
+    let finishing = modal.find('#seltest4 option:selected').text();
+    let type = modal.find('#seltest5 option:selected').text();
+    modal.find('.modal-product').text(namebrand + '.'
+        + namecollbrand + '.'
+        + furniturename + '.'
+        + finishing + '.'
+        + type);
 }
 
 function resetselect1() {
@@ -194,6 +203,10 @@ function resetselect3() {
 function resetselect4() {
     var modal = $('#productModal');
     modal.find('#seltest4 option:first').prop('selected', true);
+}
+function resetselect5() {
+    var modal = $('#productModal');
+    modal.find('#seltest5 option:first').prop('selected', true);
 }
 
 

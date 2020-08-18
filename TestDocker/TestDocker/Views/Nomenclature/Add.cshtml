@@ -1,24 +1,32 @@
 ﻿@model TestDocker.ViewsModels.EditNomenclatureViewModel
-<div class="row">
-    <div class="border col-sm-auto">
-        <partial name="_PartialBrand" />
+
+    <p>
+        <a class="btn btn-primary" data-toggle="collapse" href="#collapseaddhead" role="button" aria-expanded="false" aria-controls="collapseExample">
+            show
+        </a>
+    </p>
+
+    <div class="collapse row" id="collapseaddhead">
+        <div class="border col-sm-auto">
+            <partial name="_PartialBrand" />
+        </div>
+        <div class="border col-sm-auto">
+            <partial name="_PartialBrandCollection" />
+        </div>
+        <div class="border col-sm-auto">
+            <partial name="_PartialFurnitureName" />
+        </div>
+        <div class="border col-sm-auto">
+            <partial name="_PartialFinishing" />
+        </div>
+        <div class="border col-sm-auto">
+            <partial name="_PartialFurnitureType" />
+        </div>
+        <div class="border col-sm-auto">
+            <partial name="_PartialBuyer" />
+        </div>
     </div>
-    <div class="border col-sm-auto">
-        <partial name="_PartialBrandCollection" />
-    </div>
-    <div class="border col-sm-auto">
-        <partial name="_PartialFurnitureName" />
-    </div>
-    <div class="border col-sm-auto">
-        <partial name="_PartialFinishing" />
-    </div>
-    <div class="border col-sm-auto">
-        <partial name="_PartialFurnitureType" />
-    </div>
-    <div class="border col-sm-auto">
-        <partial name="_PartialBuyer" />
-    </div>
-</div>
-@section Footer {
-    <partial name="_FooterPartial" />
-}
+    @section Footer {
+        <partial name="_FooterPartial" />
+        <partial name="_FooterPartial2" />
+    }

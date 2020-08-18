@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,12 @@ namespace TestDocker.Services
             return finishing.Name;
         }
 
+        public static async Task<string> GetFurnitureTypeName(AllContext db, int id)
+        {
+            FurnitureType furnitureType = await db.FurnitureTypes.FirstOrDefaultAsync(f => f.Id == id);
+            return furnitureType.Name;
+        }
+
 
         public static async Task<string> GetBrandCollectionName(AllContext db, int id)
         {
@@ -39,6 +46,12 @@ namespace TestDocker.Services
             BrandCollection brandCollection = await db.BrandCollections.FirstOrDefaultAsync(bc => bc.Id == id);
             Brand brand = await db.Brands.FirstOrDefaultAsync(b => b.Id == brandCollection.BrandId);
             return brand.Name;
+        }
+
+        public static async Task<string> GetUserNameById(UserManager<User> _userManager, string id)
+        {
+            User user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
+            return user.UserName;
         }
     }
 }

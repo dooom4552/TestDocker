@@ -55,11 +55,11 @@
                 class="btn btn-outline-success btn-sm m-0"
                 data-toggle="modal"
                 data-target="#productModal"
-                onclick="resetselect1(); resetselect2(); resetselect3(); resetselect4();">
+                onclick="resetselect1(); resetselect2(); resetselect3(); resetselect4(); resetselect5();">
             AddProduct
         </button>
-        <form asp-controller="Nomenclature"
-              asp-action="CreateBrandCollection">
+        <form asp-controller="Product"
+              asp-action="CreateProduct">
             <div class="modal fade" id="productModal" tabindex="-1"
                  data-backdrop="static"
                  role="dialog" aria-labelledby="exampleModalLabel"
@@ -84,7 +84,7 @@
                             </h5>
                             <div class="form-group">
                                 <label class="mdb-main-label m-2">Brand</label>
-                                <select id="seltest1"
+                                <select id="seltest1" required
                                         onchange="BrandCollectionFilter();"
                                         class="form-control">
                                     <option value="" disabled selected>select brand</option>
@@ -95,20 +95,31 @@
                                 </select>
 
                                 <label id="lab2" class="mdb-main-label m-2">Collection</label>
-                                <select id="seltest2"
+                                <select id="seltest2" required
                                         class="form-control"
                                         onchange="FurnitureNameFilter(); FinishingFilter();">
                                     <option value="" disabled selected>select collection</option>
                                 </select>
                                 <label id="lab3" class="mdb-main-label m-2">FurnitureName</label>
-                                <select id="seltest3"
+                                <select id="seltest3" required onchange="productHeader();"
                                         class="form-control">
                                     <option value="" disabled selected>select furniture</option>
                                 </select>
                                 <label id="lab4" class="mdb-main-label m-2">Finishing</label>
-                                <select id="seltest4"
+                                <select id="seltest4" required onchange="productHeader();"
                                         class="form-control">
                                     <option value="" disabled selected>select finish</option>
+                                </select>
+
+                                <label id="lab4" class="mdb-main-label m-2">Type</label>
+                                <select id="seltest5" required onchange="productHeader();"
+                                        class="form-control">
+                                    <option value="" disabled selected>select type</option>
+                                    @foreach (var item in Model.FurnitureTypes)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+
                                 </select>
 
                             </div>
@@ -116,7 +127,7 @@
 
                             <label class="mdb-main-label">ComeDocumentName</label>
                             <input required asp-for="BrandCollectionName"
-                                   class="form-control"
+                                   class="form-control" 
                                    type="text" formmethod="post" />
 
                             <label class="mdb-main-label">ComePrice</label>
@@ -139,4 +150,5 @@
             </div>
         </form>
     </div>
+
 </div>

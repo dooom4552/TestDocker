@@ -1,0 +1,25 @@
+﻿@model TestDocker.ViewsModels.EditNomenclatureViewModel
+
+    <table class="table-sm table-striped table-responsive-md btn-table">
+
+        <thead>
+            <tr>
+                <th colspan="5" class="text-center">Collections</th>
+            </tr>
+            <tr>
+                <td>Brand.Collection</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Product product in Model.Products)
+            {
+                <tr>
+                    <td>@product.Brand</td>
+                    <td>@product.Collection</td>
+                    <td>@product.FurnitureName</td>
+                    <td>@product.Finishing</td>
+                    <td>@product.FurnitureType</td>
+                </tr>
+            }
+        </tbody>
+    </table>

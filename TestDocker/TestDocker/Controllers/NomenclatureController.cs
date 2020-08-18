@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TestDocker.Data;
@@ -16,10 +17,13 @@ namespace TestDocker.Controllers
     [Authorize(Roles = "manager")]
     public class NomenclatureController : Controller
     {
+        readonly UserManager<User> _userManager;
+
         private readonly AllContext db;
-        public NomenclatureController(AllContext context)
+        public NomenclatureController(AllContext context, UserManager<User> userManager)
         {
             db = context;
+            _userManager = userManager;
         }
 
         public async Task<IActionResult> Add()
@@ -28,8 +32,8 @@ namespace TestDocker.Controllers
             EditNomenclatureViewModel model = new EditNomenclatureViewModel()
             {
                 Brands = await db.Brands.ToListAsync(),
-                FurnitureTypes = await db.FurnitureTypes.ToListAsync(),                
-                Buyers = await db.Buyers.ToListAsync()
+                FurnitureTypes = await db.FurnitureTypes.ToListAsync(),
+                Buyers = await db.Buyers.ToListAsync(),
             };
             List<BrandCollection> BrandCollections = await db.BrandCollections.ToListAsync();
             List<BrandCollectionBrandNameViewModel> _BrandCollectionsVM = new List<BrandCollectionBrandNameViewModel>();
@@ -49,8 +53,8 @@ namespace TestDocker.Controllers
             List<FurnitureNameViewModel> _FurnitureNames = new List<FurnitureNameViewModel>();
             foreach (FurnitureName furnitureName in FurnitureNames)
             {
-                _FurnitureNames.Add(new FurnitureNameViewModel() 
-                { 
+                _FurnitureNames.Add(new FurnitureNameViewModel()
+                {
                     Id = furnitureName.Id,
                     Name = furnitureName.Name,
                     BrandName = await GetNameById.GetBrandNameByCollectionId(db, furnitureName.CollectionId),
@@ -62,10 +66,10 @@ namespace TestDocker.Controllers
 
             List<Finishing> finishings = await db.Finishings.ToListAsync();
             List<FinishingViewModel> finishingViewModels = new List<FinishingViewModel>();
-            foreach(Finishing finishing in finishings)
+            foreach (Finishing finishing in finishings)
             {
-                finishingViewModels.Add(new FinishingViewModel() 
-                { 
+                finishingViewModels.Add(new FinishingViewModel()
+                {
                     Id = finishing.Id,
                     Name = finishing.Name,
                     BrandName = await GetNameById.GetBrandNameByCollectionId(db, finishing.CollectionId),
@@ -74,6 +78,54 @@ namespace TestDocker.Controllers
                 });
             }
             model.FinishingViewModels = finishingViewModels;
+
+            List<Product> products = await db.Products.ToListAsync();
+            List<ProductVM> productVMs = new List<ProductVM>();
+            foreach (Product product in products)
+            {
+                productVMs.Add(new ProductVM()
+                {
+                    AccountantNameId = product.AccountantNameId,
+                    BrandId = product.BrandId,
+                    BuyerNameId = product.BuyerNameId,
+                     CollectionId = product.CollectionId,
+                     ComeDataTime = product.ComeDataTime,
+                     ComeDocumentName = product.ComeDocumentName,
+                     ComePrice = product.ComePrice,                     
+                     ContractGiveOutName=product.ContractGiveOutName,
+                     FinishingId=product.FinishingId,
+                     FurnitureNameId=product.FurnitureNameId,
+                     FurnitureTypeId=product.FurnitureTypeId,
+                     GiveOutDataTime=product.GiveOutDataTime,
+                     GiveOutPrice=product.GiveOutPrice,
+                     Id=product.Id,
+                     ManagerNameId=product.ManagerNameId,
+                     ScoreGiveOutName=product.ScoreGiveOutName,
+                     StorekeeperComeNameId=product.StorekeeperComeNameId,
+                     StorekeeperGiveOutNameId=product.StorekeeperGiveOutNameId, 
+                     AccountantName =await GetNameById.GetUserNameById(_userManager,product.AccountantNameId),
+                     Brand = await GetNameById.GetBrandNameById(db, product.BrandId),
+                     BrandCollection = await GetNameById.GetBrandCollectionName(db, product.CollectionId),
+                     BuyerName = await GetNameById.GetUserNameById(_userManager, product.BuyerNameId),
+                     Finishing = await GetNameById.GetFinishingName(db, product.FinishingId),
+                     FurnitureName = await GetNameById.GetFurnitureName(db, product.FurnitureNameId),
+                     FurnitureType = await GetNameById.GetFurnitureTypeName(db, product.FurnitureTypeId),
+                     ManagerName = await GetNameById.GetUserNameById(_userManager, product.ManagerNameId),
+                     StorekeeperComeName = await GetNameById.GetUserNameById(_userManager, product.StorekeeperComeNameId),
+                     StorekeeperGiveOutName = await GetNameById.GetUserNameById(_userManager, product.StorekeeperGiveOutNameId),                     
+                });
+
+                List<ProductsListVM> productsListVMs = new List<ProductsListVM>();
+                foreach (ProductList productList in db.ProductLists)
+                {
+                    productsListVMs.Add(new ProductsListVM() 
+                    { 
+
+                    });
+                }
+            }
+            
+
             return View(model);
         }
 
@@ -141,7 +193,7 @@ namespace TestDocker.Controllers
                     Name = model.Name
                 };
                 db.Brands.Add(_brand);
-                await db.SaveChangesAsync();                
+                await db.SaveChangesAsync();
             }
             return RedirectToAction("Add");
         }
@@ -178,7 +230,7 @@ namespace TestDocker.Controllers
                     BrandId = model.BrandId
                 };
                 db.BrandCollections.Add(_brandCollection);
-                await db.SaveChangesAsync();                
+                await db.SaveChangesAsync();
             }
             return RedirectToAction("Add");
         }
@@ -215,7 +267,7 @@ namespace TestDocker.Controllers
                 if (brandCollection != null)
                 {
                     db.BrandCollections.Remove(brandCollection);
-                    await db.SaveChangesAsync();                   
+                    await db.SaveChangesAsync();
                 }
             }
             return RedirectToAction("Add");
@@ -237,14 +289,14 @@ namespace TestDocker.Controllers
                     Name = model.FurName
                 };
                 db.FurnitureNames.Add(_furnitureName);
-                await db.SaveChangesAsync();               
+                await db.SaveChangesAsync();
             }
             return RedirectToAction("Add");
         }
 
         [HttpGet]
         [ActionName("DeleteFurnitureName")]
-        public async Task<IActionResult> ConfirmDeleteFurnitureName(int? id) 
+        public async Task<IActionResult> ConfirmDeleteFurnitureName(int? id)
         {
             if (id != null)
             {
@@ -259,7 +311,7 @@ namespace TestDocker.Controllers
                         Products = await db.Products.Where(p => p.FurnitureName == FurnitureName).ToListAsync(),
                     };
                     return View(model);
-                }               
+                }
             }
             return RedirectToAction("Add");
         }
@@ -274,7 +326,7 @@ namespace TestDocker.Controllers
                 if (furnitureName != null)
                 {
                     db.FurnitureNames.Remove(furnitureName);
-                    await db.SaveChangesAsync();                   
+                    await db.SaveChangesAsync();
                 }
             }
             return RedirectToAction("Add");
@@ -290,13 +342,13 @@ namespace TestDocker.Controllers
                 .FirstOrDefaultAsync(f => f.Name == model.FinishingName);
             if (finishing == null)
             {
-                Finishing _finishing = new Finishing 
+                Finishing _finishing = new Finishing
                 {
                     CollectionId = model.BrandCollectionId,
                     Name = model.FinishingName
                 };
                 db.Finishings.Add(_finishing);
-                await db.SaveChangesAsync();               
+                await db.SaveChangesAsync();
             }
             return RedirectToAction("Add");
         }
@@ -315,7 +367,7 @@ namespace TestDocker.Controllers
                     {
                         Id = (int)id,
                         Name = finishing.Name,
-                        Products = await db.Products.Where(p => p.Finishing== finishingName).ToListAsync(),
+                        Products = await db.Products.Where(p => p.Finishing == finishingName).ToListAsync(),
                     };
                     return View(model);
                 }
@@ -333,7 +385,7 @@ namespace TestDocker.Controllers
                 if (finishing != null)
                 {
                     db.Finishings.Remove(finishing);
-                    await db.SaveChangesAsync();                    
+                    await db.SaveChangesAsync();
                 }
             }
             return RedirectToAction("Add");

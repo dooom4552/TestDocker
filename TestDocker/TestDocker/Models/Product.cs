@@ -14,38 +14,38 @@ namespace TestDocker.Models
 
         #region номенклатура
 
-        /// <summary>Название брэнда</summary>
-        public string Brand { get; set; }
+        /// <summary>ID брэнда</summary>
+        public int BrandId { get; set; }
 
-        /// <summary>Название коллекции</summary>
-        public string Collection { get; set; }
+        /// <summary>ID коллекции</summary>
+        public int CollectionId { get; set; }
 
-        /// <summary>Название конкретного изделия</summary>
-        public string FurnitureName { get; set; }
+        /// <summary>ID конкретного изделия</summary>
+        public int FurnitureNameId { get; set; }
 
-        /// <summary>Название отделки</summary>
-        public string Finishing { get; set; }
+        /// <summary>Id отделки</summary>
+        public int FinishingId { get; set; }
 
-        /// <summary>Название типа изделия стол стул кровать и так далее</summary>
-        public string FurnitureType { get; set; }
+        /// <summary>Id типа изделия стол стул кровать и так далее</summary>
+        public int FurnitureTypeId { get; set; }
         #endregion
 
         #region имена пользователей
 
-        /// <summary>Имя кладовщика кто принял товар на склад</summary>
-        public string StorekeeperComeName { get; set; }
+        /// <summary>Id кладовщика кто принял товар на склад</summary>
+        public string StorekeeperComeNameId { get; set; }
 
-        /// <summary>Имя мэнеджера кто назначил цену продажи и отправил бухгалтеру</summary>
-        public string ManagerName { get; set; }
+        /// <summary>Id мэнеджера кто назначил цену продажи и отправил бухгалтеру</summary>
+        public string ManagerNameId { get; set; }
 
-        /// <summary>Имя бухгалтера кто принял оплату счет или договор или то и то</summary>
-        public string AccountantName { get; set; }
+        /// <summary>Id бухгалтера кто принял оплату счет или договор или то и то</summary>
+        public string AccountantNameId { get; set; }
 
-        /// <summary>Имя покупателя кто оплатил</summary>
-        public string BuyerName { get; set; }
+        /// <summary>Id покупателя кто оплатил</summary>
+        public string BuyerNameId { get; set; }
 
-        /// <summary>Имя кладовщика кто выдал товар покупателю</summary>
-        public string StorekeeperGiveOutName { get; set; }
+        /// <summary>Id кладовщика кто выдал товар покупателю</summary>
+        public string StorekeeperGiveOutNameId { get; set; }
         #endregion        
 
         #region накладные договара
