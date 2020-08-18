@@ -37,7 +37,7 @@ namespace TestDocker.Controllers
                     await _signInManager.SignInAsync(user, false);// устанавливаем аутентификационные куки для добавленного пользователя.
                     // этот метод передается объект пользователя, который аутентифицируется, и логическое значение, указывающее,
                     //надо ли сохранять куки в течение продолжительного времени. И далее выполняем переадресацию на главную страницу приложения.
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Add", "Nomenclature");
                 }
                 else
                 {
@@ -72,11 +72,11 @@ namespace TestDocker.Controllers
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
                     {
                         //return Redirect(model.ReturnUrl);
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Add", "Nomenclature");
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Add", "Nomenclature");
                     }
                 }
             }
@@ -92,7 +92,7 @@ namespace TestDocker.Controllers
         {
             // удаляем аутентификационные куки
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+             return RedirectToAction("Add", "Nomenclature");
         }
     }
 }

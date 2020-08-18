@@ -31,7 +31,7 @@ namespace TestDocker.Controllers
                     {
                         Id = (int)id,
                         Name = furnitureType.Name,
-                        Products = await db.Products.Where(p => p.FurnitureType == furnitureType.Name).ToListAsync()
+                        Products = await db.Products.Where(p => p.FurnitureTypeId == id).ToListAsync()
                     };
                     return View(model);
                 }

@@ -43,9 +43,10 @@ namespace TestDocker.Services
         }
         public static async Task<string> GetBrandNameByCollectionId(AllContext db, int id)
         {
-            BrandCollection brandCollection = await db.BrandCollections.FirstOrDefaultAsync(bc => bc.Id == id);
-            Brand brand = await db.Brands.FirstOrDefaultAsync(b => b.Id == brandCollection.BrandId);
-            return brand.Name;
+            BrandCollection brandCollection =await  db.BrandCollections.FirstOrDefaultAsync(bc => bc.Id == id);
+            Brand brand =await  db.Brands.FirstOrDefaultAsync(b => b.Id == brandCollection.BrandId);
+            string name = brand.Name;
+            return name;
         }
 
         public static async Task<string> GetUserNameById(UserManager<User> _userManager, string id)

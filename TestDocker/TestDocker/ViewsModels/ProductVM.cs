@@ -30,8 +30,6 @@ namespace TestDocker.ViewsModels
         /// <summary>Имя бухгалтера кто принял оплату счет или договор или то и то</summary>
         public string AccountantName { get; set; }
 
-        /// <summary>Имя покупателя кто оплатил</summary>
-        public string BuyerName { get; set; }
 
         /// <summary>Имя кладовщика кто выдал товар покупателю</summary>
         public string StorekeeperGiveOutName { get; set; }

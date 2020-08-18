@@ -75,16 +75,13 @@
                                     data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                        </div>
-                        <div hidden class="modal-brandid">
-                            <input required asp-for="BrandId" type="text" />
-                        </div>
+                        </div>                      
                         <div class="modal-body">
                             <h5 class="modal-product">
                             </h5>
                             <div class="form-group">
                                 <label class="mdb-main-label m-2">Brand</label>
-                                <select id="seltest1" required
+                                <select id="seltest1" required asp-for="ProductBrandId"
                                         onchange="BrandCollectionFilter();"
                                         class="form-control">
                                     <option value="" disabled selected>select brand</option>
@@ -95,24 +92,29 @@
                                 </select>
 
                                 <label id="lab2" class="mdb-main-label m-2">Collection</label>
-                                <select id="seltest2" required
+                                <select id="seltest2" required asp-for="ProductCollectionId"
                                         class="form-control"
                                         onchange="FurnitureNameFilter(); FinishingFilter();">
                                     <option value="" disabled selected>select collection</option>
                                 </select>
+
                                 <label id="lab3" class="mdb-main-label m-2">FurnitureName</label>
                                 <select id="seltest3" required onchange="productHeader();"
+                                        asp-for="ProductFurnitureNameId"
                                         class="form-control">
                                     <option value="" disabled selected>select furniture</option>
                                 </select>
+
                                 <label id="lab4" class="mdb-main-label m-2">Finishing</label>
                                 <select id="seltest4" required onchange="productHeader();"
+                                        asp-for="ProductFinishingId"
                                         class="form-control">
                                     <option value="" disabled selected>select finish</option>
                                 </select>
 
                                 <label id="lab4" class="mdb-main-label m-2">Type</label>
                                 <select id="seltest5" required onchange="productHeader();"
+                                        asp-for="ProductFurnitureTypeId"
                                         class="form-control">
                                     <option value="" disabled selected>select type</option>
                                     @foreach (var item in Model.FurnitureTypes)
@@ -126,17 +128,17 @@
 
 
                             <label class="mdb-main-label">ComeDocumentName</label>
-                            <input required asp-for="BrandCollectionName"
+                            <input required asp-for="ProductComeDocumentName"
                                    class="form-control" 
                                    type="text" formmethod="post" />
 
-                            <label class="mdb-main-label">ComePrice</label>
+                            <label class="mdb-main-label">ProductComePrice</label>
                             <input required asp-for="BrandCollectionName"
                                    class="form-control"
                                    type="number" formmethod="post" />
 
                             <label class="mdb-main-label">Quantity</label>
-                            <input required asp-for="BrandCollectionName"
+                            <input required asp-for="ProductQuantity"
                                    class="form-control"
                                    type="number" formmethod="post" />
 

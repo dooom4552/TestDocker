@@ -42,7 +42,7 @@ namespace TestDocker.Models
         public string AccountantNameId { get; set; }
 
         /// <summary>Id покупателя кто оплатил</summary>
-        public string BuyerNameId { get; set; }
+        public string BuyerName { get; set; }
 
         /// <summary>Id кладовщика кто выдал товар покупателю</summary>
         public string StorekeeperGiveOutNameId { get; set; }
@@ -77,5 +77,8 @@ namespace TestDocker.Models
         /// <summary>Дата выдачи товара со склада</summary>
         public DateTime GiveOutDataTime { get; set; }
         #endregion
+
+        /// <summary>ID списка одинаковых по номенклатуре товаров</summary>
+        public int ProductListId { get; set; }
     }
 }

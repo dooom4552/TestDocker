@@ -55,7 +55,7 @@ namespace TestDocker.Data
             modelBuilder.Entity<Finishing>().HasData(
                 new Finishing[]
                 {
-                    new Finishing{Id=1, Name="Silver "}
+                    new Finishing{Id=1, Name="Silver ", CollectionId=1}
                 }
                 );
         }
