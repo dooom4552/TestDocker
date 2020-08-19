@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,7 +44,7 @@ namespace TestDocker.Controllers
                 _BrandCollectionsVM.Add(new BrandCollectionBrandNameViewModel()
                 {
                     BrandId = brandCollection.BrandId,
-                    BrandName =await  GetNameById.GetBrandNameByCollectionId(db, brandCollection.Id),
+                    BrandName = await GetNameById.GetBrandNameByCollectionId(db, brandCollection.Id),
                     Id = brandCollection.Id,
                     Name = brandCollection.Name
                 });
@@ -58,7 +59,7 @@ namespace TestDocker.Controllers
                 {
                     Id = furnitureName.Id,
                     Name = furnitureName.Name,
-                    BrandName =await GetNameById.GetBrandNameByCollectionId(db, furnitureName.CollectionId),
+                    BrandName = await GetNameById.GetBrandNameByCollectionId(db, furnitureName.CollectionId),
                     CollectionName = await GetNameById.GetBrandCollectionName(db, furnitureName.CollectionId),
                     CollectionId = furnitureName.CollectionId
                 });
@@ -73,7 +74,7 @@ namespace TestDocker.Controllers
                 {
                     Id = finishing.Id,
                     Name = finishing.Name,
-                    BrandName =await  GetNameById.GetBrandNameByCollectionId(db, finishing.CollectionId),
+                    BrandName = await GetNameById.GetBrandNameByCollectionId(db, finishing.CollectionId),
                     CollectionName = await GetNameById.GetBrandCollectionName(db, finishing.CollectionId),
                     CollectionId = finishing.CollectionId
                 });
@@ -115,46 +116,76 @@ namespace TestDocker.Controllers
                     StorekeeperGiveOutName = await GetNameById.GetUserNameById(_userManager, product.StorekeeperGiveOutNameId),
                 });
             }
+            List<Product> productsAll = await db.Products.ToListAsync();
+            List<Brand> brands = await db.Brands.ToListAsync();
+            List<BrandCollection> brandCollections = await db.BrandCollections.ToListAsync();
+            List<FurnitureName> furnitureNames = await db.FurnitureNames.ToListAsync();
+            List<Finishing> _finishings = await db.Finishings.ToListAsync();
+            List<FurnitureType> furnitureTypes = await db.FurnitureTypes.ToListAsync();
 
-                List<ProductsListVM> productsListVMs = new List<ProductsListVM>();
-                foreach (ProductList productList in db.ProductLists)
+
+            List<ProductsListVM> productsListVMs = new List<ProductsListVM>();
+            foreach (ProductList productList in db.ProductLists)
+            {
+                List<Product> _products = productsAll
+                    .Where(p => p.ProductListId == productList.Id)
+                    .ToList();
+                var comeprices = from price in _products
+                                 .Where(p => p.StorekeeperGiveOutNameId == null)
+                                 select price.ComePrice;
+                //Вытащить коллекцию нужного свойства(GiveOutPrice) из коллекции объектов _products.
+                var giveoutprices = from price in _products
+                                        .Where(p => p.StorekeeperGiveOutNameId != null)
+                                    select price.GiveOutPrice;
+                //Создать новую коллекцию объектов класса ProductVM заполненую свойствами _products
+                var _productVMs = from p in _products
+                                  select new ProductVM
+                                  {
+                                      Brand = GetNameById.GetBrandNameByIdNotAsync(brands, p.BrandId),
+                                      BrandCollection = GetNameById.GetBrandCollectionNameNotAsync(brandCollections, p.CollectionId),
+                                      FurnitureName = GetNameById.GetFurnitureNameNotAsync(furnitureNames, p.FurnitureNameId),
+                                      Finishing = GetNameById.GetFinishingNameNotAsync(_finishings, p.FinishingId),
+                                      FurnitureType = GetNameById.GetFurnitureTypeNameNotAsync(furnitureTypes, p.FurnitureTypeId),
+                                      StorekeeperComeName =  GetNameById.GetUserNameByIdNotAsync(_userManager, p.StorekeeperComeNameId),
+                                      ManagerName = GetNameById.GetUserNameByIdNotAsync(_userManager, p.ManagerNameId),
+                                      AccountantName = GetNameById.GetUserNameByIdNotAsync(_userManager, p.AccountantNameId),
+                                      StorekeeperGiveOutName = GetNameById.GetUserNameByIdNotAsync(_userManager, p.StorekeeperGiveOutNameId),
+                                      Id = p.Id,
+                                      BrandId = p.BrandId,
+                                      CollectionId = p.CollectionId,
+                                      FurnitureNameId = p.FurnitureNameId,
+                                      FinishingId = p.FinishingId,
+                                      FurnitureTypeId = p.FurnitureTypeId,
+                                      StorekeeperComeNameId = p.StorekeeperComeNameId,
+                                      ManagerNameId = p.ManagerNameId,
+                                      AccountantNameId = p.AccountantNameId,
+                                      BuyerName = p.BuyerName,
+                                      StorekeeperGiveOutNameId = p.StorekeeperGiveOutNameId,
+                                      ComeDocumentName = p.ComeDocumentName,
+                                      ContractGiveOutName = p.ContractGiveOutName,
+                                      ScoreGiveOutName = p.ScoreGiveOutName,
+                                      ComePrice = p.ComePrice,
+                                      GiveOutPrice = p.GiveOutPrice,
+                                      ComeDataTime = p.ComeDataTime,
+                                      GiveOutDataTime = p.GiveOutDataTime,
+                                      ProductListId = p.ProductListId
+                                  };
+
+                productsListVMs.Add(new ProductsListVM()
                 {
-                    List <Product> _products = await db.Products
-                        .Where(p => p.ProductListId == productList.Id)
-                        .ToListAsync();
-                    var comeprices = from price in _products.Where(p => p.GiveOutDataTime == null) select price.ComePrice;
-
-                    var giveoutprices = from price in _products.Where(p => p.GiveOutDataTime == null) select price.GiveOutPrice;
-
-                    var _productVMs = from p in _products
-                                      select new ProductVM{
-                                          Brand = productVMs[0].Brand,
-                                          BrandCollection = productVMs[0].BrandCollection,
-                                          FurnitureName = productVMs[0].FurnitureName,
-                                          Finishing = productVMs[0].Finishing,
-                                          FurnitureType=productVMs[0].FurnitureType,
-                                          StorekeeperComeName = productVMs[0].StorekeeperComeName,
-                                          ManagerName = productVMs[0].ManagerName,
-                                          AccountantName = productVMs[0].AccountantName,
-                                          BuyerName = productVMs[0].BuyerName,
-                                          StorekeeperGiveOutName = productVMs[0].StorekeeperGiveOutName,
-                                      };
-
-                    productsListVMs.Add(new ProductsListVM()
-                    {
-                        Amountsold = _products.Where(p => p.GiveOutDataTime != null).Count(),
-                        AmountStock = _products.Where(p => p.GiveOutDataTime == null).Count(),
-                        BrandId = productList.BrandId,
-                        CollectionId = productList.CollectionId,
-                        FinishingId = productList.FinishingId,
-                        FurnitureNameId = productList.FurnitureNameId,
-                        FurnitureTypeId = productList.FurnitureTypeId,
-                        ComeSumPrice = comeprices.Sum(),
-                        GiveOutSumPrice = giveoutprices.Sum(),
-                        Id = productList.Id,
-                        ProductVMs = _productVMs.ToList()
-                    });
-                }
+                    Amountsold = _products.Where(p => p.StorekeeperGiveOutNameId != null).Count(),
+                    AmountStock = _products.Where(p => p.StorekeeperGiveOutNameId == null).Count(),
+                    BrandId = productList.BrandId,
+                    CollectionId = productList.CollectionId,
+                    FinishingId = productList.FinishingId,
+                    FurnitureNameId = productList.FurnitureNameId,
+                    FurnitureTypeId = productList.FurnitureTypeId,
+                    ComeSumPrice = comeprices.Sum().ToString("C2", CultureInfo.CreateSpecificCulture("eu-ES")),
+                    GiveOutSumPrice = giveoutprices.Sum().ToString("C2", CultureInfo.CreateSpecificCulture("eu-ES")),
+                    Id = productList.Id,
+                    ProductVMs = _productVMs.ToList()
+                });
+            }
             model.ProductsListVMs = productsListVMs;
             return View(model);
         }

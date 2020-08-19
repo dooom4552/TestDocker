@@ -17,10 +17,10 @@ namespace TestDocker.ViewsModels
         #region цены
 
         /// <summary>Цена товара при поступлении на склад</summary>
-        public decimal ComeSumPrice { get; set; }
+        public string ComeSumPrice { get; set; }
 
         /// <summary>Цена товара по которой продали товар</summary>
-        public decimal GiveOutSumPrice { get; set; }
+        public string GiveOutSumPrice { get; set; }
         #endregion
         public List<ProductVM> ProductVMs { get; set; }
     }

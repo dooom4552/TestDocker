@@ -1,5 +1,6 @@
 ﻿@model TestDocker.ViewsModels.EditNomenclatureViewModel
 
+
     <table class="table-sm table-striped table-responsive-md btn-table">
 
         <thead>
@@ -9,6 +10,18 @@
             <tr>
                 <td>Brand.Collection</td>
             </tr>
+            @foreach (var item in Model.ProductsListVMs)
+            {
+                <tr>
+                    <td>@item.BrandId</td>
+                    <td>@item.CollectionId</td>
+                    <td>@item.FurnitureNameId</td>
+                    <td>@item.FinishingId</td>
+                    <td>@item.FurnitureTypeId</td>
+                    <td>@item.AmountStock</td>
+                    <td>@item.ComeSumPrice</td>
+                </tr>
+            }
         </thead>
         <tbody>
 

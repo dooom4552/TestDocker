@@ -59,7 +59,7 @@
             AddProduct
         </button>
         <form asp-controller="Product"
-              asp-action="CreateProduct">
+              asp-action="CreateProduct" method="post">
             <div class="modal fade" id="productModal" tabindex="-1"
                  data-backdrop="static"
                  role="dialog" aria-labelledby="exampleModalLabel"
@@ -123,9 +123,7 @@
                                     }
 
                                 </select>
-
                             </div>
-
 
                             <label class="mdb-main-label">ComeDocumentName</label>
                             <input required asp-for="ProductComeDocumentName"
@@ -133,7 +131,7 @@
                                    type="text" formmethod="post" />
 
                             <label class="mdb-main-label">ProductComePrice</label>
-                            <input required asp-for="BrandCollectionName"
+                            <input required asp-for="ProductComePrice"
                                    class="form-control"
                                    type="number" formmethod="post" />
 
@@ -141,7 +139,6 @@
                             <input required asp-for="ProductQuantity"
                                    class="form-control"
                                    type="number" formmethod="post" />
-
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
