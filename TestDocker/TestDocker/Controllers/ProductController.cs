@@ -55,7 +55,7 @@ namespace TestDocker.Controllers
                         CollectionId = model.ProductCollectionId,
                         FurnitureNameId = model.ProductFurnitureNameId,
                         FinishingId = model.ProductFinishingId,
-                        FurnitureTypeId = model.ProductFinishingId,
+                        FurnitureTypeId = model.ProductFurnitureTypeId,
                         StorekeeperComeNameId = user.Id,
                         ComeDocumentName = model.ProductComeDocumentName,
                         ComePrice = model.ProductComePrice,
