@@ -36,16 +36,16 @@ namespace TestDocker.Models
         public string StorekeeperComeNameId { get; set; }
 
         /// <summary>Id мэнеджера кто назначил цену продажи и отправил бухгалтеру</summary>
-        public string ManagerNameId { get; set; }
+        //public string ManagerNameId { get; set; }
 
         /// <summary>Id бухгалтера кто принял оплату счет или договор или то и то</summary>
-        public string AccountantNameId { get; set; }
+        //public string AccountantNameId { get; set; }
 
         /// <summary>Id покупателя кто оплатил</summary>
-        public string BuyerName { get; set; }
+        //public string BuyerName { get; set; }
 
         /// <summary>Id кладовщика кто выдал товар покупателю</summary>
-        public string StorekeeperGiveOutNameId { get; set; }
+        //public string StorekeeperGiveOutNameId { get; set; }
         #endregion        
 
         #region накладные договара
@@ -54,10 +54,10 @@ namespace TestDocker.Models
         public string ComeDocumentName { get; set; }
 
         /// <summary>Имя договора по которому оплатил покупатель</summary>
-        public string ContractGiveOutName { get; set; }
+        //public string ContractGiveOutName { get; set; }
 
         /// <summary>Имя счета по которому оплатил покупатель</summary>
-        public string ScoreGiveOutName { get; set; }
+        //public string ScoreGiveOutName { get; set; }
         #endregion
 
         #region цены
@@ -66,7 +66,7 @@ namespace TestDocker.Models
         public decimal ComePrice { get; set; }
 
         /// <summary>Цена товара по которой продали товар</summary>
-        public decimal GiveOutPrice { get; set; }
+        //public decimal GiveOutPrice { get; set; }
         #endregion
 
         #region даты
@@ -75,10 +75,19 @@ namespace TestDocker.Models
         public DateTime ComeDataTime { get; set; }
 
         /// <summary>Дата выдачи товара со склада</summary>
-        public DateTime GiveOutDataTime { get; set; }
+        //public DateTime GiveOutDataTime { get; set; }
         #endregion
 
         /// <summary>ID списка одинаковых по номенклатуре товаров</summary>
-        public int ProductListId { get; set; }
+        //public int ProductListId { get; set; }
+
+        /// <summary>Количество на складе</summary>
+        public int AmountStock { get; set; }
+
+        /// <summary>Количество продано</summary>
+        public int Amountsold { get; set; }
+        
+        /// <summary>Количество при поступлении</summary>
+        public int AmountCome { get; set; } 
     }
 }

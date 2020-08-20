@@ -6,8 +6,9 @@ using TestDocker.Models;
 
 namespace TestDocker.ViewsModels
 {
-    public class ProductVM : Product
+    public class ProductVM
     {
+        #region номентклатура
         /// <summary>Имя брэнда</summary>
         public string Brand { get; set; }
         /// <summary>Имя коллекции</summary>
@@ -20,19 +21,16 @@ namespace TestDocker.ViewsModels
 
         /// <summary>Имя типа изделия</summary>
         public string FurnitureType { get; set; }
-
-        /// <summary>Имя кладовщика кто принял товар на склад</summary>
-        public string StorekeeperComeName { get; set; }
-
-        /// <summary>Имя мэнеджера кто назначил цену продажи и отправил бухгалтеру</summary>
-        public string ManagerName { get; set; }
-
-        /// <summary>Имя бухгалтера кто принял оплату счет или договор или то и то</summary>
-        public string AccountantName { get; set; }
+        #endregion
 
 
-        /// <summary>Имя кладовщика кто выдал товар покупателю</summary>
-        public string StorekeeperGiveOutName { get; set; }
+        /// <summary>Количество на складе</summary>
+        public int AmountStock { get; set; }
 
+        /// <summary>Сумма цен всех товаров данной номенкатуры</summary>
+        public string SumPrice { get; set; }
+
+        /// <summary>Последняя цена продажи</summary>
+        public decimal LastPrice { get; set; }
     }
 }

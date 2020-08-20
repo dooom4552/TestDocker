@@ -10,16 +10,16 @@
             <tr>
                 <td>Brand.Collection</td>
             </tr>
-            @foreach (var item in Model.ProductsListVMs)
+            @foreach (var item in Model.ProductVMs)
             {
                 <tr>
-                    <td>@item.BrandId</td>
-                    <td>@item.CollectionId</td>
-                    <td>@item.FurnitureNameId</td>
-                    <td>@item.FinishingId</td>
-                    <td>@item.FurnitureTypeId</td>
+                    <td>@item.Brand</td>
+                    <td>@item.BrandCollection</td>
+                    <td>@item.FurnitureName</td>
+                    <td>@item.Finishing</td>
+                    <td>@item.FurnitureType</td>
                     <td>@item.AmountStock</td>
-                    <td>@item.ComeSumPrice</td>
+                    <td>@item.SumPrice</td>
                 </tr>
             }
         </thead>

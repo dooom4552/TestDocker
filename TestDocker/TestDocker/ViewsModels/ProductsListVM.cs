@@ -6,8 +6,9 @@ using TestDocker.Models;
 
 namespace TestDocker.ViewsModels
 {
-    public class ProductsListVM : ProductList
+    public class ProductsListVM
     {
+        #region старое
         /// <summary>Количество на складе</summary>
         public int AmountStock { get; set; }
 
@@ -23,5 +24,8 @@ namespace TestDocker.ViewsModels
         public string GiveOutSumPrice { get; set; }
         #endregion
         public List<ProductVM> ProductVMs { get; set; }
+        #endregion
+
+       public List<Product> Products { get; set; }
     }
 }

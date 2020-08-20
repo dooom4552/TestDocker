@@ -10,6 +10,6 @@ namespace TestDocker.ViewsModels
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<Product> Products { get; set; }
+        public List<ProductOut> ProductOuts { get; set; }
     }
 }

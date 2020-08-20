@@ -12,14 +12,14 @@ namespace TestDocker.ViewsModels
         public int Id { get; set; }
         public int BrandId { get; set; }
         public int BrandCollectionId { get; set; }
-        public List<Brand> Brands { get; set; }
-        
+
+        public List<Brand> Brands { get; set; }       
         public List<BrandCollectionBrandNameViewModel> BrandCollectionBrandNameViewModels { get; set; }
         public List<FurnitureNameViewModel> FurnitureNameViewModels{ get; set; }
         public List<FurnitureType> FurnitureTypes { get; set; }
         public List<FinishingViewModel> FinishingViewModels { get; set; }
         public List<Buyer> Buyers { get; set; }  
-        public List<ProductsListVM> ProductsListVMs { get; set; }
+        public List<ProductVM> ProductVMs { get; set; }
         public string BrandCollectionName { get; set; } 
         public string FinishingName { get; set; }
         public string FurName { get; set; }
@@ -91,9 +91,6 @@ namespace TestDocker.ViewsModels
         /// <summary>Дата выдачи товара со склада</summary>
         public DateTime ProductGiveOutDataTime { get; set; }
         #endregion
-
-        /// <summary>ID списка одинаковых по номенклатуре товаров</summary>
-        public int ProductProductListId { get; set; }
 
         public int ProductQuantity { get; set; }
         #endregion
