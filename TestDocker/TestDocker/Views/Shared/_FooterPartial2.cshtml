@@ -1,29 +1,39 @@
 ﻿@model TestDocker.ViewsModels.EditNomenclatureViewModel
 
+<div class="container-fluid mt-2 mb-2">
 
-    <table class="table-sm table-striped table-responsive-md btn-table">
-
+    <table id="table"
+           data-toggle="table"
+           data-pagination="true"
+           data-search="true"
+           data-toolbar="#toolbar"
+           data-advanced-search="true"
+           data-id-table="advancedTable"
+           data-filter-control="true"
+           data-filter-show-clear="true">
         <thead>
             <tr>
-                <th colspan="5" class="text-center">Collections</th>
+                <th data-field="brand" data-sortable="true" data-filter-control="select">Brand</th>
+                <th data-field="brandcollection" data-sortable="true" data-filter-control="select">BrandCollection</th>
+                <th data-field="furniturename" data-sortable="true" data-filter-control="select">FurnitureName</th>
+                <th data-field="finishing" data-sortable="true" data-filter-control="select">Finishing</th>
+                <th data-field="furnituretype" data-sortable="true" data-filter-control="select">FurnitureType</th>
+                <th data-field="amountstock" data-sortable="false">AmountStock</th>
+                <th data-field="sumprice" data-sortable="false">SumPrice</th>
             </tr>
-            <tr>
-                <td>Brand.Collection</td>
-            </tr>
-            @foreach (var item in Model.ProductVMs)
-            {
-                <tr>
-                    <td>@item.Brand</td>
-                    <td>@item.BrandCollection</td>
-                    <td>@item.FurnitureName</td>
-                    <td>@item.Finishing</td>
-                    <td>@item.FurnitureType</td>
-                    <td>@item.AmountStock</td>
-                    <td>@item.SumPrice</td>
-                </tr>
-            }
         </thead>
-        <tbody>
 
-        </tbody>
+        @foreach (var item in Model.ProductVMs)
+        {
+            <tr>
+                <td tabindex="brand">@item.Brand</td>
+                <td tabindex="brandcollection">@item.BrandCollection</td>
+                <td tabindex="furniturename">@item.FurnitureName</td>
+                <td tabindex="finishing">@item.Finishing</td>
+                <td tabindex="furnituretype">@item.FurnitureType</td>
+                <td tabindex="amountstock">@item.AmountStock</td>
+                <td tabindex="sumprice">@item.SumPrice</td>
+            </tr>
+        }
     </table>
+</div>

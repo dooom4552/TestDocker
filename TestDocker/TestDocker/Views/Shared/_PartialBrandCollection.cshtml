@@ -16,7 +16,7 @@
             <td>@brandCollection.BrandName.@brandCollection.Name</td>
             <td>
                 <button type="button"
-                        class="btn btn-outline-success btn-sm m-0"
+                        class="btn btn-indigo btn-sm m-0"
                         data-toggle="modal"
                         data-brandcollname="@brandCollection.Name"
                         data-collectionid="@brandCollection.Id"
@@ -53,8 +53,8 @@
                                            type="text" formmethod="post" />
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <input type="submit" class="btn btn-outline-success btn-sm m-0" value="AddFurName" />
+                                    <button type="button" class="btn btn-blue-grey btn-sm m-0" data-dismiss="modal">Close</button>
+                                    <input type="submit" class="btn btn-indigo btn-sm m-0" value="AddFurName" />
                                 </div>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
             </td>
             <td>
                 <button type="button"
-                        class="btn btn-outline-success btn-sm m-0"
+                        class="btn btn-indigo btn-sm m-0"
                         data-toggle="modal"
                         data-brandcollname="@brandCollection.Name"
                         data-collectionid="@brandCollection.Id"
@@ -100,8 +100,8 @@
                                            type="text" formmethod="post" />
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <input type="submit" class="btn btn-outline-success btn-sm m-0" value="AddFinishing" />
+                                    <button type="button" class="btn btn-blue-grey btn-sm m-0" data-dismiss="modal">Close</button>
+                                    <input type="submit" class="btn btn-indigo btn-sm m-0" value="AddFinishing" />
                                 </div>
                             </div>
                         </div>
@@ -109,7 +109,7 @@
                 </form>
             </td>
             <td>
-                <a class="btn btn-outline-danger btn-sm m-0"  
+                <a class="btn btn-red btn-sm m-0"  
                    asp-controller="Nomenclature"
                    asp-action="DeleteBrandCollection"
                    asp-route-id="@brandCollection.Id">Delete</a>
