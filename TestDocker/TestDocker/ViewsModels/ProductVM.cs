@@ -23,14 +23,22 @@ namespace TestDocker.ViewsModels
         public string FurnitureType { get; set; }
         #endregion
 
+        #region ID
+        public int BrandId { get; set; }
+        public int BrandCollectionId { get; set; }
+        public int FurnitureNameId { get; set; }
+        public int FinishingId { get; set; }
+        public int FurnitureTypeId { get; set; }
+        #endregion
+
 
         /// <summary>Количество на складе</summary>
         public int AmountStock { get; set; }
 
         /// <summary>Сумма цен всех товаров данной номенкатуры</summary>
-        public string SumPrice { get; set; }
+        public float SumPrice { get; set; }
 
         /// <summary>Последняя цена продажи</summary>
-        public decimal LastPrice { get; set; }
+        public float LastPrice { get; set; }
     }
 }

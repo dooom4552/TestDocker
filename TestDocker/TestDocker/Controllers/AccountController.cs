@@ -72,11 +72,11 @@ namespace TestDocker.Controllers
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
                     {
                         //return Redirect(model.ReturnUrl);
-                        return RedirectToAction("Add", "Nomenclature");
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {
-                        return RedirectToAction("Add", "Nomenclature");
+                        return RedirectToAction("Index", "Home");
                     }
                 }
             }
@@ -92,7 +92,7 @@ namespace TestDocker.Controllers
         {
             // удаляем аутентификационные куки
             await _signInManager.SignOutAsync();
-             return RedirectToAction("Add", "Nomenclature");
+             return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -63,7 +63,7 @@ namespace TestDocker.Models
         #region цены
 
         /// <summary>Цена товара при поступлении на склад</summary>
-        public decimal ComePrice { get; set; }
+        public float ComePrice { get; set; }
 
         /// <summary>Цена товара по которой продали товар</summary>
         //public decimal GiveOutPrice { get; set; }

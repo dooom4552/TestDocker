@@ -56,7 +56,7 @@
                 data-toggle="modal"
                 data-target="#productModal"
                 onclick="resetselect1(); resetselect2(); resetselect3(); resetselect4(); resetselect5();">
-            AddProduct
+            Add New Product
         </button>
         <form asp-controller="Product"
               asp-action="CreateProduct" method="post">
@@ -126,17 +126,17 @@
                             </div>
 
                             <label class="mdb-main-label">ComeDocumentName</label>
-                            <input required asp-for="ProductComeDocumentName"
+                            <input required min="1" asp-for="ProductComeDocumentName"
                                    class="form-control" 
                                    type="text" formmethod="post" />
 
                             <label class="mdb-main-label">ProductComePrice</label>
-                            <input required asp-for="ProductComePrice"
+                            <input required min="1" asp-for="ProductComePrice"
                                    class="form-control"
                                    type="number" formmethod="post" />
 
                             <label class="mdb-main-label">Quantity</label>
-                            <input required asp-for="ProductQuantity"
+                            <input required min="1" asp-for="ProductQuantity"
                                    class="form-control"
                                    type="number" formmethod="post" />
                         </div>

@@ -16,7 +16,7 @@ using TestDocker.ViewsModels;
 
 namespace TestDocker.Controllers
 {
-    [Authorize(Roles = "manager")]
+    [Authorize(Roles = "manager, director")]
     public class NomenclatureController : Controller
     {
         readonly UserManager<User> _userManager;
@@ -89,6 +89,11 @@ namespace TestDocker.Controllers
             List<ProductVM> grouped = (from p in products
                           group p by new
                           {
+                              BrandId=p.BrandId,
+                              BrandCollectionId = p.CollectionId,
+                              FurnitureNameId = p.FurnitureNameId,
+                              FinishingId = p.FinishingId,
+                              FurnitureTypeId = p.FurnitureTypeId,
                               Brand = GetNameById.GetBrandNameByIdNotAsync(model.Brands, p.BrandId),
                               BrandCollection = GetNameById.GetBrandCollectionNameNotAsync(BrandCollections, p.CollectionId),
                               FurnitureName = GetNameById.GetFurnitureNameNotAsync(FurnitureNames, p.FurnitureNameId),
@@ -98,13 +103,20 @@ namespace TestDocker.Controllers
                           into grp
                           select new ProductVM
                           {
+                              BrandId = grp.Key.BrandId,
+                              BrandCollectionId = grp.Key.BrandCollectionId,
+                              FurnitureNameId = grp.Key.FurnitureNameId,
+                              FinishingId = grp.Key.FinishingId,
+                              FurnitureTypeId = grp.Key.FurnitureTypeId,
                               Brand = grp.Key.Brand,
                               BrandCollection = grp.Key.BrandCollection,
                               FurnitureName = grp.Key.FurnitureName,
                               Finishing = grp.Key.Finishing,
                               FurnitureType = grp.Key.FurnitureType,
-                              SumPrice = grp.Sum(p => p.ComePrice).ToString("C2", CultureInfo.CreateSpecificCulture("eu-ES")),
-                              AmountStock = grp.Sum(p => p.AmountStock)
+                              SumPrice = grp.Sum(p => p.ComePrice*p.AmountStock),
+                           
+                              AmountStock = grp.Sum(p => p.AmountStock),
+                              LastPrice = grp.OrderByDescending(p => p .ComeDataTime).FirstOrDefault().ComePrice
                           }).ToList();
             //comeprices.Sum().ToString("C2", CultureInfo.CreateSpecificCulture("eu-ES")),
             model.ProductVMs = grouped;

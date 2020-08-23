@@ -3,21 +3,21 @@
 
 // Write your JavaScript code.
 $('#exampleModal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget) // Button that triggered the modal
-    var recipient = button.data('whatever') // Extract info from data-* attributes
-    var brandid = button.data('brandid')
+    let button = $(event.relatedTarget) // Button that triggered the modal
+    let recipient = button.data('whatever') // Extract info from data-* attributes
+    let brandid = button.data('brandid')
     //    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
     //    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-    var modal = $(this)
+    let modal = $(this)
     modal.find('.modal-brandid input').val(brandid)
     modal.find('.modal-title').text('Brand: ' + recipient)
     //modal.find('.modal-body input').val(recipient)
 })
 // Write your JavaScript code.
 $('#BrandCollectionModal').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget) // Button that triggered the modal
-    var brandcollname = button.data('brandcollname') // Extract info from data-* attributes
-    var collectionid = button.data('collectionid')
+    let button = $(event.relatedTarget) // Button that triggered the modal
+    let brandcollname = button.data('brandcollname') // Extract info from data-* attributes
+    let collectionid = button.data('collectionid')
     // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
     // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
     var modal = $(this)
@@ -27,12 +27,12 @@ $('#BrandCollectionModal').on('show.bs.modal', function (event) {
 })
 // Write your JavaScript code.
 $('#BrandCollectionFinishing').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget) // Button that triggered the modal
-    var brandcollname = button.data('brandcollname') // Extract info from data-* attributes
-    var collectionid = button.data('collectionid')
+    let button = $(event.relatedTarget) // Button that triggered the modal
+    let brandcollname = button.data('brandcollname') // Extract info from data-* attributes
+    let collectionid = button.data('collectionid')
     // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
     // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-    var modal = $(this)
+    let modal = $(this)
     modal.find('.modal-brandcollid input').val(collectionid)
     modal.find('.modal-title').text('BrandCollection: ' + brandcollname)
     //modal.find('.modal-body input').val(recipient)
@@ -41,7 +41,7 @@ $('#BrandCollectionFinishing').on('show.bs.modal', function (event) {
 // Write your JavaScript code.
 $('#productModal').on('show.bs.modal', function (event) {
     let modal = $('#productModal');
-    var button = $(event.relatedTarget) // Button that triggered the modal 
+    let button = $(event.relatedTarget) // Button that triggered the modal 
 
     modal.find('#lab2').hide();
     modal.find('#seltest2').hide();
@@ -112,7 +112,7 @@ function FurnitureNameFilter() {
     let modal = $('#productModal');
     let value = modal.find('#seltest2 option:selected').val();
 
-    var ArrayFurnitureNamesFilter = ArrayFurnitureNames.filter(function (furname) {
+    let ArrayFurnitureNamesFilter = ArrayFurnitureNames.filter(function (furname) {
         return furname.BrandColldId == value;
     })
 
@@ -189,24 +189,68 @@ function productHeader() {
 }
 
 function resetselect1() {
-    var modal = $('#productModal');
+    let modal = $('#productModal');
     modal.find('#seltest1 option:first').prop('selected', true);
 }
 function resetselect2() {
-    var modal = $('#productModal');
+    let modal = $('#productModal');
     modal.find('#seltest2 option:first').prop('selected', true);
 }
 function resetselect3() {
-    var modal = $('#productModal');
+    let modal = $('#productModal');
     modal.find('#seltest3 option:first').prop('selected', true);
 }
 function resetselect4() {
-    var modal = $('#productModal');
+    let modal = $('#productModal');
     modal.find('#seltest4 option:first').prop('selected', true);
 }
 function resetselect5() {
-    var modal = $('#productModal');
+    let modal = $('#productModal');
     modal.find('#seltest5 option:first').prop('selected', true);
 }
 
+$('#addprod2Modal').on('show.bs.modal', function (event) {
+    let button = $(event.relatedTarget) // Button that triggered the modal
+    
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    let modal = $(this)
+    
+    let brandid = button.data('brandid')
+    let brandcollectionid = button.data('brandcollectionid')
+    let furniturenameid = button.data('furniturenameid')
+    let finishingid = button.data('finishingid')
+    let furnituretypeid = button.data('furnituretypeid')
+
+    let brand = button.data('brand')
+    let brandcollection = button.data('brandcollection')
+    let furniturename = button.data('furniturename')
+    let finishing = button.data('finishing')
+    let furnituretype = button.data('furnituretype')
+
+    let lastprice = button.data('lastprice')
+  
+    modal.find('.modal-BrandId input').val(brandid)
+    modal.find('.modal-BrandCollectionId input').val(brandcollectionid)
+    modal.find('.modal-FurnitureNameId input').val(furniturenameid)
+    modal.find('.modal-FinishingId input').val(finishingid)
+    modal.find('.modal-FurnitureTypeId input').val(furnituretypeid)
+
+    modal.find('.modal-Brand input').val(brand)
+    modal.find('.modal-BrandCollection input').val(brandcollection)
+    modal.find('.modal-FurnitureName input').val(furniturename)
+    modal.find('.modal-Finishing input').val(finishing)
+    modal.find('.modal-FurnitureType input').val(furnituretype)
+
+    modal.find('.modal-LastPrice input').val(lastprice)
+})
+
+
+
+function sumpriceFormatter(data){
+    let field = this.field
+    return '$'+ data.map(function(row){
+        return + row[field].substring(0)
+    }).reduce((total, amount) => total+ amount);
+}
 

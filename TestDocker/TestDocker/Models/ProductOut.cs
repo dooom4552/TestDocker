@@ -40,7 +40,7 @@ namespace TestDocker.Models
         #region цены
 
         /// <summary>Цена товара по которой продали товар</summary>
-        public decimal GiveOutPrice { get; set; }
+        public float GiveOutPrice { get; set; }
         #endregion
 
         #region даты

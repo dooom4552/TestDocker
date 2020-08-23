@@ -10,7 +10,10 @@
            data-advanced-search="true"
            data-id-table="advancedTable"
            data-filter-control="true"
-           data-filter-show-clear="true">
+           data-filter-show-clear="true"
+           data-detail-view="true"
+           data-detail-formatter="detailFormatter"
+           data-show-footer="true">
         <thead>
             <tr>
                 <th data-field="brand" data-sortable="true" data-filter-control="select">Brand</th>
@@ -19,12 +22,15 @@
                 <th data-field="finishing" data-sortable="true" data-filter-control="select">Finishing</th>
                 <th data-field="furnituretype" data-sortable="true" data-filter-control="select">FurnitureType</th>
                 <th data-field="amountstock" data-sortable="false">AmountStock</th>
-                <th data-field="sumprice" data-sortable="false">SumPrice</th>
+                <th data-field="lastprice" data-sortable="false">LastPrice</th>
+                <th data-field="sumprice" data-sortable="false"  data-footer-formatter="sumpriceFormatter">Sumprice</th>
+                <th data-sortable="false">Action</th>
             </tr>
         </thead>
-
+        
         @foreach (var item in Model.ProductVMs)
         {
+
             <tr>
                 <td tabindex="brand">@item.Brand</td>
                 <td tabindex="brandcollection">@item.BrandCollection</td>
@@ -32,8 +38,120 @@
                 <td tabindex="finishing">@item.Finishing</td>
                 <td tabindex="furnituretype">@item.FurnitureType</td>
                 <td tabindex="amountstock">@item.AmountStock</td>
+                @*<td tabindex="lastprice">@item.LastPrice.ToString("C2")</td>
+                <td tabindex="sumprice">@item.SumPrice.ToString("C2")</td>*@
+                
+                <td tabindex="lastprice">@item.LastPrice</td>
                 <td tabindex="sumprice">@item.SumPrice</td>
+                <td>
+                    <button type="button" class="btn btn-indigo btn-sm m-0"
+                            data-toggle="modal"
+                            data-target="#addprod2Modal"
+                            data-brandid="@item.BrandId"
+                            data-brandcollectionid="@item.BrandCollectionId"
+                            data-furniturenameid="@item.FurnitureNameId"
+                            data-finishingid="@item.FinishingId"
+                            data-furnituretypeid="@item.FurnitureTypeId"
+
+                            data-lastprice="@item.LastPrice"
+
+                            data-brand="@item.Brand"
+                            data-brandcollection="@item.BrandCollection"
+                            data-furniturename="@item.FurnitureName"
+                            data-finishing="@item.Finishing"
+                            data-furnituretype="@item.FurnitureType">
+                        Add
+                    </button>
+                </td>
             </tr>
         }
     </table>
+    <form asp-controller="Product"
+              asp-action="CreateReProduct" method="post">
+        <div class="modal fade" id="addprod2Modal" tabindex="-1" role="dialog" aria-labelledby="addprod2ModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addprod2ModalLabel">Add Product</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="modal-BrandId">
+                                <input required hidden asp-for="ProductBrandId" />
+                            </div>
+                            <div class="modal-Brand">
+                                <label class="mdb-main-label">Brand</label>
+                                <input required disabled
+                                       class="form-control">
+                            </div>
+
+                            <div class="modal-BrandCollectionId">
+                                <input required hidden asp-for="ProductCollectionId" />
+                            </div>
+                            <div class="modal-BrandCollection">
+                                <label class="mdb-main-label">Collection</label>
+                                <input required disabled
+                                       class="form-control" />
+                            </div>
+
+                            <div class="modal-FurnitureNameId">
+                                <input required hidden asp-for="ProductFurnitureNameId" />
+                            </div>
+                            <div class="modal-FurnitureName">
+                                <label class="mdb-main-label">FurnitureName</label>
+                                <input required disabled
+                                       class="form-control" />
+                            </div>
+
+                            <div class="modal-FinishingId">
+                                <input required hidden asp-for="ProductFinishingId" />
+                            </div>
+                            <div class="modal-Finishing">
+                                <label class="mdb-main-label">Finishing</label>
+                                <input required disabled
+                                       class="form-control" />
+                            </div>
+
+                            <div class="modal-FurnitureTypeId">
+                                <input required hidden asp-for="ProductFurnitureTypeId" />
+                            </div>
+                            <div class="modal-FurnitureType">
+                                <label class="mdb-main-label">FurnitureType</label>
+                                <input required disabled
+                                       class="form-control" />
+                            </div>
+
+                            <div class="modal-ComeDocumentName">
+                                <label class="mdb-main-label">ComeDocumentName</label>
+                                <input required asp-for="ProductComeDocumentName"
+                                       class="form-control"
+                                       type="text" formmethod="post" />
+                            </div>
+                           
+                            <div class="modal-LastPrice">
+                                <label class="mdb-main-label">ProductComePrice</label>
+                                <input  asp-for="ProductComePrice" 
+                                       class="form-control"
+                                        formmethod="post" />
+                            </div>
+
+
+                            <label class="mdb-main-label">Quantity</label>
+                            <input required min="1" asp-for="ProductQuantity"
+                                   class="form-control"
+                                   type="number" formmethod="post" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-blue-grey btn-sm m-0" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-indigo btn-sm m-0" value="AddProduct" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>

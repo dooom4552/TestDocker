@@ -77,10 +77,10 @@ namespace TestDocker.ViewsModels
         #region цены
 
         /// <summary>Цена товара при поступлении на склад</summary>
-        public decimal ProductComePrice { get; set; }
+        public float ProductComePrice { get; set; }
 
         /// <summary>Цена товара по которой продали товар</summary>
-        public decimal ProductGiveOutPrice { get; set; }
+        public float ProductGiveOutPrice { get; set; }
         #endregion
 
         #region даты
