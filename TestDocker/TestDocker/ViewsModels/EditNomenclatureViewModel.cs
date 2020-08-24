@@ -56,7 +56,7 @@ namespace TestDocker.ViewsModels
         public string ProductAccountantNameId { get; set; }
 
         /// <summary>Id покупателя кто оплатил</summary>
-        public string ProductBuyerName { get; set; }
+        public int ProductBuyerId { get; set; }
 
         /// <summary>Id кладовщика кто выдал товар покупателю</summary>
         public string ProductStorekeeperGiveOutNameId { get; set; }
@@ -93,6 +93,11 @@ namespace TestDocker.ViewsModels
         #endregion
 
         public int ProductQuantity { get; set; }
+        #endregion
+
+        #region SoldProduct
+
+
         #endregion
     }
 }

@@ -18,6 +18,7 @@ namespace TestDocker.Data
         public DbSet<Buyer> Buyers { get; set; }
         public DbSet<ProductList> ProductLists { get; set; }
         public DbSet<ProductOut> ProductOuts{ get; set; }
+        public DbSet<ProductSold> ProductSolds { get; set; }
 
 
         public AllContext(DbContextOptions<AllContext> options)

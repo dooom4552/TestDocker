@@ -88,6 +88,11 @@ namespace TestDocker.Controllers
 
                 return RedirectToAction("Add", "Nomenclature");
         }
+
+        //public async Task<IActionResult> CreateProductSold(EditNomenclatureViewModel model)
+        //{
+
+        //}
     }
 
    

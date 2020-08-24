@@ -6,16 +6,34 @@ using System.Threading.Tasks;
 namespace TestDocker.Models
 {
     /// <summary>
-    /// конкретный товар
+    /// заказ
     /// </summary>
     public class ProductOut
     {
         public int Id { get; set; }
 
+        #region номенклатура
+
+        /// <summary>ID брэнда</summary>
+        public int BrandId { get; set; }
+
+        /// <summary>ID коллекции</summary>
+        public int CollectionId { get; set; }
+
+        /// <summary>ID конкретного изделия</summary>
+        public int FurnitureNameId { get; set; }
+
+        /// <summary>Id отделки</summary>
+        public int FinishingId { get; set; }
+
+        /// <summary>Id типа изделия стол стул кровать и так далее</summary>
+        public int FurnitureTypeId { get; set; }
+        #endregion
+
         #region имена пользователей
 
-         ///<summary>Id мэнеджера кто назначил цену продажи и отправил бухгалтеру</summary>
-         
+        ///<summary>Id мэнеджера кто назначил цену продажи и отправил бухгалтеру</summary>
+
         public string ManagerNameId { get; set; }
 
         /// <summary>Id бухгалтера кто принял оплату счет или договор или то и то</summary>
