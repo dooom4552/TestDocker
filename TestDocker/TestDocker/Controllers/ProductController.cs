@@ -89,10 +89,41 @@ namespace TestDocker.Controllers
                 return RedirectToAction("Add", "Nomenclature");
         }
 
-        //public async Task<IActionResult> CreateProductSold(EditNomenclatureViewModel model)
-        //{
+        public async Task<IActionResult> CreateProductSold(EditNomenclatureViewModel model)
+        {
+            List<Product> products = await db.Products
+                .Where(pl => pl.BrandId == model.ProductBrandId)
+                .Where(pl => pl.CollectionId == model.ProductCollectionId)
+                .Where(pl => pl.FurnitureNameId == model.ProductFurnitureNameId)
+                .Where(pl => pl.FinishingId == model.ProductFinishingId)
+                .Where(pl => pl.FurnitureTypeId == model.ProductFurnitureTypeId).ToListAsync();
+            if (products.Count > 0)
+            {
+                if (model.ProductQuantity <= products.Sum(p => p.AmountStock))
+                {
+                    User user = await _userManager.FindByNameAsync(User.Identity.Name);//пользователь который авторизован
+                    ProductOut productOut = new ProductOut()
+                    {
+                        BrandId = model.ProductBrandId,
+                        CollectionId = model.ProductCollectionId,
+                        FurnitureNameId = model.ProductFurnitureNameId,
+                        FinishingId = model.ProductFinishingId,
+                        FurnitureTypeId = model.ProductFurnitureTypeId,
+                        ManagerNameId = user.Id,
+                        BuyerNameId = model.ProductBuyerId,
+                        GiveOutPrice = model.ProductGiveOutPrice,
+                        Amountsold = model.ProductQuantity
+                    };
+                    db.ProductOuts.Add(productOut);
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Add", "Nomenclature");
+                }
+            }
 
-        //}
+
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 
    

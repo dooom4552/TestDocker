@@ -20,6 +20,7 @@ namespace TestDocker.ViewsModels
         public List<FinishingViewModel> FinishingViewModels { get; set; }
         public List<Buyer> Buyers { get; set; }  
         public List<ProductVM> ProductVMs { get; set; }
+        public List<ProductOutVM> ProductOutVMs { get; set; }
         public string BrandCollectionName { get; set; } 
         public string FinishingName { get; set; }
         public string FurName { get; set; }

@@ -245,6 +245,47 @@ $('#addprod2Modal').on('show.bs.modal', function (event) {
     modal.find('.modal-LastPrice input').val(lastprice)
 })
 
+$('#soldprod2Modal').on('show.bs.modal', function (event) {
+    let button = $(event.relatedTarget) // Button that triggered the modal
+
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    let modal = $(this)
+
+    let brandid = button.data('brandid')
+    let brandcollectionid = button.data('brandcollectionid')
+    let furniturenameid = button.data('furniturenameid')
+    let finishingid = button.data('finishingid')
+    let furnituretypeid = button.data('furnituretypeid')
+
+    let brand = button.data('brand')
+    let brandcollection = button.data('brandcollection')
+    let furniturename = button.data('furniturename')
+    let finishing = button.data('finishing')
+    let furnituretype = button.data('furnituretype')
+
+    let quantity = button.data('quantity')
+
+    modal.find('.modal-BrandId input').val(brandid)
+    modal.find('.modal-BrandCollectionId input').val(brandcollectionid)
+    modal.find('.modal-FurnitureNameId input').val(furniturenameid)
+    modal.find('.modal-FinishingId input').val(finishingid)
+    modal.find('.modal-FurnitureTypeId input').val(furnituretypeid)
+
+    modal.find('.modal-Brand input').val(brand)
+    modal.find('.modal-BrandCollection input').val(brandcollection)
+    modal.find('.modal-FurnitureName input').val(furniturename)
+    modal.find('.modal-Finishing input').val(finishing)
+    modal.find('.modal-FurnitureType input').val(furnituretype)
+
+    modal.find('.modal-Quantity label').text('No more  ' + quantity)
+
+    modal.find('.modal-Quantity input').attr({
+        "max": quantity
+    });
+
+})
+
 
 
 function sumpriceFormatter(data){

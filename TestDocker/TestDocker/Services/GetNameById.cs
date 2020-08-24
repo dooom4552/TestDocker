@@ -77,6 +77,12 @@ namespace TestDocker.Services
             return name;
         }
 
+        public static  string GetBuyerNameById(List<Buyer> db, int id)
+        {
+            Buyer buyer = db.FirstOrDefault(b => b.Id == id);
+            return buyer.Name;
+        }
+
         public static async Task<string> GetUserNameById(UserManager<User> _userManager, string id)
         {
             User user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == id);

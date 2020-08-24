@@ -40,7 +40,7 @@ namespace TestDocker.Models
         public string AccountantNameId { get; set; }
 
         /// <summary>Id покупателя кто оплатил</summary>
-        public string BuyerName { get; set; }
+        public int BuyerNameId { get; set; }
 
         /// <summary>Id кладовщика кто выдал товар покупателю</summary>
         public string StorekeeperGiveOutNameId { get; set; }

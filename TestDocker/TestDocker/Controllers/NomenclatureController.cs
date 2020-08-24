@@ -121,50 +121,36 @@ namespace TestDocker.Controllers
             //comeprices.Sum().ToString("C2", CultureInfo.CreateSpecificCulture("eu-ES")),
             model.ProductVMs = grouped;
 
+            List<ProductOut> productOuts = await db.ProductOuts.ToListAsync();
+            List<ProductOutVM> productOutVMs = (from p in productOuts
+                                               select new ProductOutVM
+                                               {
+                                                   BrandId = p.BrandId,
+                                                   CollectionId =p.CollectionId,
+                                                   FurnitureNameId = p.FurnitureNameId,
+                                                   FinishingId = p.FinishingId,
+                                                   FurnitureTypeId = p.FurnitureTypeId,
+                                                   Id = p.Id,
+                                                   AccountantNameId = p.AccountantNameId,
+                                                   BuyerNameId = p.BuyerNameId,
+                                                   ManagerNameId = p.ManagerNameId,
+                                                   Amountsold= p.Amountsold,
+                                                   ContractGiveOutName = p.ContractGiveOutName,
+                                                   ScoreGiveOutName = p.ScoreGiveOutName,
+                                                   GiveOutDataTime = p.GiveOutDataTime,
+                                                   GiveOutPrice = p.GiveOutPrice,
+                                                   StorekeeperGiveOutNameId= p.StorekeeperGiveOutNameId,
+                                                   Brand = GetNameById.GetBrandNameByIdNotAsync(model.Brands, p.BrandId),
+                                                   BrandCollection = GetNameById.GetBrandCollectionNameNotAsync(BrandCollections, p.CollectionId),
+                                                   FurnitureName = GetNameById.GetFurnitureNameNotAsync(FurnitureNames, p.FurnitureNameId),
+                                                   Finishing = GetNameById.GetFinishingNameNotAsync(finishings, p.FinishingId),
+                                                   FurnitureType = GetNameById.GetFurnitureTypeNameNotAsync(model.FurnitureTypes, p.FurnitureTypeId),
+                                                   BuyerName = GetNameById.GetBuyerNameById(model.Buyers, p.BuyerNameId),
+                                                   SumPrice = p.GiveOutPrice*p.Amountsold
+                                               }).ToList();
+            model.ProductOutVMs = productOutVMs;
+
             #region старое
-            //List<Product> products = await db.Products.ToListAsync();
-            //List<ProductVM> productVMs = new List<ProductVM>();
-            //foreach (Product product in products)
-            //{
-            //    productVMs.Add(new ProductVM()
-            //    {
-            //        AccountantNameId = product.AccountantNameId,
-            //        BrandId = product.BrandId,
-            //        BuyerName = product.BuyerName,
-            //        CollectionId = product.CollectionId,
-            //        ComeDataTime = product.ComeDataTime,
-            //        ComeDocumentName = product.ComeDocumentName,
-            //        ComePrice = product.ComePrice,
-            //        ContractGiveOutName = product.ContractGiveOutName,
-            //        FinishingId = product.FinishingId,
-            //        FurnitureNameId = product.FurnitureNameId,
-            //        FurnitureTypeId = product.FurnitureTypeId,
-            //        GiveOutDataTime = product.GiveOutDataTime,
-            //        GiveOutPrice = product.GiveOutPrice,
-            //        Id = product.Id,
-            //        ManagerNameId = product.ManagerNameId,
-            //        ScoreGiveOutName = product.ScoreGiveOutName,
-            //        StorekeeperComeNameId = product.StorekeeperComeNameId,
-            //        StorekeeperGiveOutNameId = product.StorekeeperGiveOutNameId,
-            //        AccountantName = await GetNameById.GetUserNameById(_userManager, product.AccountantNameId),
-            //        Brand = await GetNameById.GetBrandNameById(db, product.BrandId),
-            //        BrandCollection = await GetNameById.GetBrandCollectionName(db, product.CollectionId),
-            //        Finishing = await GetNameById.GetFinishingName(db, product.FinishingId),
-            //        FurnitureName = await GetNameById.GetFurnitureName(db, product.FurnitureNameId),
-            //        FurnitureType = await GetNameById.GetFurnitureTypeName(db, product.FurnitureTypeId),
-            //        ManagerName = await GetNameById.GetUserNameById(_userManager, product.ManagerNameId),
-            //        StorekeeperComeName = await GetNameById.GetUserNameById(_userManager, product.StorekeeperComeNameId),
-            //        StorekeeperGiveOutName = await GetNameById.GetUserNameById(_userManager, product.StorekeeperGiveOutNameId),
-            //    });
-            //}
-            //List<Product> productsAll = await db.Products.ToListAsync();
-            //List<Brand> brands = await db.Brands.ToListAsync();
-            //List<BrandCollection> brandCollections = await db.BrandCollections.ToListAsync();
-            //List<FurnitureName> furnitureNames = await db.FurnitureNames.ToListAsync();
-            //List<Finishing> _finishings = await db.Finishings.ToListAsync();
-            //List<FurnitureType> furnitureTypes = await db.FurnitureTypes.ToListAsync();
-
-
             //List<ProductsListVM> productsListVMs = new List<ProductsListVM>();
             //foreach (ProductList productList in db.ProductLists)
             //{

@@ -32,7 +32,7 @@ namespace TestDocker.Controllers
                     {
                         Id = (int)id,
                         Name = buyer.Name,
-                        ProductOuts = await db.ProductOuts.Where(p => p.BuyerName == buyer.Name).ToListAsync()
+                        ProductOuts = await db.ProductOuts.Where(p => p.BuyerNameId == buyer.Id).ToListAsync()
                     };
                     return View(model);
                 }
