@@ -16,8 +16,8 @@
 
 
 <div class="row collapse show multi-collapse" id="multiCollapseComing">
-    <div class="container mt-2 mb-2">
-
+    <div class="container-fluid mt-2 mb-2">
+        <h4>List Product: <span class="badge badge-secondary">Coming</span></h4>
         <table id="table"
                data-toggle="table"
                data-pagination="true"
@@ -37,7 +37,7 @@
                     <th data-field="furniturename" data-sortable="true" data-filter-control="select">FurnitureName</th>
                     <th data-field="finishing" data-sortable="true" data-filter-control="select">Finishing</th>
                     <th data-field="furnituretype" data-sortable="true" data-filter-control="select">FurnitureType</th>
-                    <th data-field="amountstock" data-sortable="false">AmountStock</th>
+                    <th data-field="amountstock" data-sortable="false" data-footer-formatter="sumpriceFormatter">AmountStock</th>
                     <th data-field="lastprice" data-sortable="false">LastPrice</th>
                     <th data-field="sumprice" data-sortable="false" data-footer-formatter="sumpriceFormatter">Sumprice</th>
                     <th data-sortable="false">Action</th>
@@ -289,8 +289,8 @@
 </div>
 
 <div class="row collapse multi-collapse" id="multiCollapseoOutput">
-    <div class="container mt-2 mb-2">
-
+    <div class="container-fluid mt-2 mb-2">
+        <h4>List Product: <span class="badge badge-secondary">Output</span></h4>
         <table id="table"
                data-toggle="table"
                data-pagination="true"
@@ -310,70 +310,80 @@
                     <th data-field="furniturename" data-sortable="true" data-filter-control="select">FurnitureName</th>
                     <th data-field="finishing" data-sortable="true" data-filter-control="select">Finishing</th>
                     <th data-field="furnituretype" data-sortable="true" data-filter-control="select">FurnitureType</th>
+                    <th data-field="contractgiveoutname" data-sortable="true" data-filter-control="select">ContractGiveOutName</th>
+                    <th data-field="scoregiveoutname" data-sortable="true" data-filter-control="select">ScoreGiveOutName</th>
                     <th data-field="buyername" data-sortable="true" data-filter-control="select">BuyerName</th>
                     <th data-field="amountsold" data-sortable="false">Amountsold</th>
                     <th data-field="giveoutprice" data-sortable="false">GiveOutPrice</th>
                     <th data-field="sumprice" data-sortable="false" data-footer-formatter="sumpriceFormatter">Sumprice</th>
                     <th data-sortable="false">Action</th>
                 </tr>
+
             </thead>
 
             @foreach (var item in Model.ProductOutVMs)
             {
+                if (item.StorekeeperGiveOutNameId == null)
+                {
 
+                
                 <tr>
                     <td tabindex="brand">@item.Brand</td>
                     <td tabindex="brandcollection">@item.BrandCollection</td>
                     <td tabindex="furniturename">@item.FurnitureName</td>
                     <td tabindex="finishing">@item.Finishing</td>
                     <td tabindex="furnituretype">@item.FurnitureType</td>
+
+                    <td tabindex="contractgiveoutname">@item.ContractGiveOutName</td>
+                    <td tabindex="scoregiveoutname">@item.ScoreGiveOutName</td>
+
                     <td tabindex="buyername">@item.BuyerName</td>
                     <td tabindex="amountsold">@item.Amountsold</td>
-
 
                     <td tabindex="giveoutprice">@item.GiveOutPrice</td>
                     <td tabindex="sumprice">@item.SumPrice</td>
                     <td>
-                        @*@if (User.IsInRole("storekeeper"))
+
+                        @if (User.IsInRole("manager"))
+                        {
+                            <a class="btn btn-red btn-sm m-0"
+                               asp-controller="Product"
+                               asp-action="DeleteProductSold"
+                               asp-route-id="@item.Id">
+                                delete
+                            </a>
+                        }
+                        @if (User.IsInRole("accountant") && item.AccountantNameId == null)
                         {
                             <button type="button" class="btn btn-indigo btn-sm m-0"
                                     data-toggle="modal"
-                                    data-target="#addprod2Modal"
-                                    data-brandid="@item.BrandId"
-                                    data-brandcollectionid="@item.BrandCollectionId"
-                                    data-furniturenameid="@item.FurnitureNameId"
-                                    data-finishingid="@item.FinishingId"
-                                    data-furnituretypeid="@item.FurnitureTypeId"
-                                    data-lastprice="@item.LastPrice"
-                                    data-brand="@item.Brand"
-                                    data-brandcollection="@item.BrandCollection"
-                                    data-furniturename="@item.FurnitureName"
-                                    data-finishing="@item.Finishing"
-                                    data-furnituretype="@item.FurnitureType">
-                                Add
-                            </button>
-                        }*@
-                        @*@if (User.IsInRole("manager"))
-                        {
-                            <button type="button" class="btn btn-indigo btn-sm m-0"
-                                    data-toggle="modal"
-                                    data-target="#soldprod2Modal"
-                                    data-brandid="@item.BrandId"
-                                    data-brandcollectionid="@item.BrandCollectionId"
-                                    data-furniturenameid="@item.FurnitureNameId"
-                                    data-finishingid="@item.FinishingId"
-                                    data-furnituretypeid="@item.FurnitureTypeId"
+                                    data-target="#acceptprodModal"
+                                    data-productoutvmid="@item.Id"
                                     data-brand="@item.Brand"
                                     data-brandcollection="@item.BrandCollection"
                                     data-furniturename="@item.FurnitureName"
                                     data-finishing="@item.Finishing"
                                     data-furnituretype="@item.FurnitureType"
-                                    data-quantity="@item.AmountStock">
-                                Sold
+                                    data-buyer="@item.BuyerName"
+                                    data-quantity="@item.Amountsold">
+                                accept payment
                             </button>
-                        }*@
+                        }
+                        @if (User.IsInRole("storekeeper"))
+                        {
+                            if (item.AccountantNameId != null && item.StorekeeperGiveOutNameId == null)
+                            {
+                                <a class="btn btn-indigo btn-sm m-0"
+                                   asp-controller="Product"
+                                   asp-action="СonfirmStorekeeperGiveOut"
+                                   asp-route-id="@item.Id">
+                                    accept GiveOut
+                                </a>
+                            }
+                        }
                     </td>
                 </tr>
+                }
             }
         </table>
         <form asp-controller="Product"
@@ -554,6 +564,90 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-blue-grey btn-sm m-0" data-dismiss="modal">Close</button>
                             <input type="submit" class="btn btn-indigo btn-sm m-0" value="SoldProduct" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <form asp-controller="Product"
+              asp-action="СonfirmAccountant" method="post">
+            <div class="modal fade" id="acceptprodModal" tabindex="-1" role="dialog" aria-labelledby="acceptprodModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="acceptprodModalLabel">Accept Payment</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <div class="modal-Id">
+                                    <input hidden required type="number" asp-for="ProductOutId" />
+                                </div>
+                                <div class="modal-Brand">
+                                    <label class="mdb-main-label">Brand</label>
+                                    <input required disabled
+                                           class="form-control">
+                                </div>
+
+                                <div class="modal-BrandCollection">
+                                    <label class="mdb-main-label">Collection</label>
+                                    <input required disabled
+                                           class="form-control" />
+                                </div>
+
+                                <div class="modal-FurnitureName">
+                                    <label class="mdb-main-label">FurnitureName</label>
+                                    <input required disabled
+                                           class="form-control" />
+                                </div>
+
+                                <div class="modal-Finishing">
+                                    <label class="mdb-main-label">Finishing</label>
+                                    <input required disabled
+                                           class="form-control" />
+                                </div>
+
+                                <div class="modal-FurnitureType">
+                                    <label class="mdb-main-label">FurnitureType</label>
+                                    <input required disabled
+                                           class="form-control" />
+                                </div>
+
+                                <div class="modal-Buyer">
+                                    <label class="mdb-main-label">Buyer</label>
+                                    <input required disabled
+                                           class="form-control" />
+                                </div>
+                                <div class="modal-Quantity">
+                                    <label class="mdb-main-label">Quantity</label>
+                                    <input required disabled
+                                           class="form-control" />
+                                </div>
+
+                                <div class="modal-ContractGiveOutName">
+                                    <label class="mdb-main-label">ContractGiveOutName</label>
+                                    <input asp-for="ContractGiveOutName"
+                                           class="form-control"
+                                           type="text" formmethod="post" />
+                                </div>
+
+                                <div class="modal-ScoreGiveOutName">
+                                    <label class="mdb-main-label">ScoreGiveOutName</label>
+                                    <input asp-for="ScoreGiveOutName"
+                                           type="text"
+                                           class="form-control"
+                                           formmethod="post" />
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-blue-grey btn-sm m-0" data-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-indigo btn-sm m-0" value="AddProduct" />
                         </div>
                     </div>
                 </div>

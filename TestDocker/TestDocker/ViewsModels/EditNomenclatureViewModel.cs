@@ -97,7 +97,13 @@ namespace TestDocker.ViewsModels
         #endregion
 
         #region SoldProduct
+        public int ProductOutId { get; set; }
 
+        /// <summary>Имя договора по которому оплатил покупатель</summary>
+        public string ContractGiveOutName { get; set; }
+
+        /// <summary>Имя счета по которому оплатил покупатель</summary>
+        public string ScoreGiveOutName { get; set; }
 
         #endregion
     }

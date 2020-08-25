@@ -1,32 +1,36 @@
 ﻿@model TestDocker.ViewsModels.EditNomenclatureViewModel
 
-    <p>
-        <a class="btn btn-indigo btn-lg m-0" data-toggle="collapse" href="#collapseaddhead" role="button" aria-expanded="false" aria-controls="collapseExample">
-            show Nomenclature
-        </a>
-    </p>
+<p>
+    <a class="btn btn-indigo btn-lg m-0" data-toggle="collapse" href="#collapseaddhead" role="button" aria-expanded="false" aria-controls="collapseExample">
+        show Nomenclature
+    </a>
+</p>
 
-    <div class="collapse row" id="collapseaddhead">
-        <div class="border col-sm-auto">
-            <partial name="_PartialBrand" />
-        </div>
-        <div class="border col-sm-auto">
-            <partial name="_PartialBrandCollection" />
-        </div>
-        <div class="border col-sm-auto">
-            <partial name="_PartialFurnitureName" />
-        </div>
-        <div class="border col-sm-auto">
-            <partial name="_PartialFinishing" />
-        </div>
-        <div class="border col-sm-auto">
-            <partial name="_PartialFurnitureType" />
-        </div>
-        <div class="border col-sm-auto">
-            <partial name="_PartialBuyer" />
-        </div>
+<div class="collapse row" id="collapseaddhead">
+    <div class="border col-sm-auto">
+        <partial name="_PartialBrand" />
     </div>
-    @section Footer {
+    <div class="border col-sm-auto">
+        <partial name="_PartialBrandCollection" />
+    </div>
+    <div class="border col-sm-auto">
+        <partial name="_PartialFurnitureName" />
+    </div>
+    <div class="border col-sm-auto">
+        <partial name="_PartialFinishing" />
+    </div>
+    <div class="border col-sm-auto">
+        <partial name="_PartialFurnitureType" />
+    </div>
+    <div class="border col-sm-auto">
+        <partial name="_PartialBuyer" />
+    </div>
+</div>
+@section Footer {
+    @if (User.IsInRole("storekeeper"))
+    {
         <partial name="_FooterPartial" />
-        <partial name="_FooterPartial2" />
     }
+
+    <partial name="_FooterPartial2" />
+}

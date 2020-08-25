@@ -1,17 +1,27 @@
-﻿<ul class="navbar-nav flex-grow-1">
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Analytics</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Nomenclature" asp-action="Add">Add-Delete</a>
-    </li>
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Settings
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">Users</a>
-            <a class="nav-link text-dark" asp-area="" asp-controller="Roles" asp-action="Index">Roles</a>
-        </div>
-    </li>
-</ul>
+﻿@if (User.Identity.IsAuthenticated)
+{
+    <ul class="navbar-nav flex-grow-1">
+        @if (User.IsInRole("director"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Analytics</a>
+            </li>
+        }
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Nomenclature" asp-action="Add">Add-Delete</a>
+        </li>
+
+        @if (User.IsInRole("director"))
+        {
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Settings
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">Users</a>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Roles" asp-action="Index">Roles</a>
+                </div>
+            </li>
+        }
+    </ul>
+}

@@ -286,12 +286,40 @@ $('#soldprod2Modal').on('show.bs.modal', function (event) {
 
 })
 
-
-
 function sumpriceFormatter(data){
     let field = this.field
-    return '$'+ data.map(function(row){
+    return data.map(function(row){
         return + row[field].substring(0)
     }).reduce((total, amount) => total+ amount);
 }
 
+$('#acceptprodModal').on('show.bs.modal', function (event) {
+    let button = $(event.relatedTarget) // Button that triggered the modal
+
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    let modal = $(this)
+
+    let id = button.data('productoutvmid')   
+    let brand = button.data('brand')
+    let brandcollection = button.data('brandcollection')
+    let furniturename = button.data('furniturename')
+    let finishing = button.data('finishing')
+    let furnituretype = button.data('furnituretype')
+  
+    let buyer = button.data('buyer')
+
+    let quantity = button.data('quantity')
+
+    
+    modal.find('.modal-Brand input').val(brand)
+    modal.find('.modal-BrandCollection input').val(brandcollection)
+    modal.find('.modal-FurnitureName input').val(furniturename)
+    modal.find('.modal-Finishing input').val(finishing)
+    modal.find('.modal-FurnitureType input').val(furnituretype)
+    modal.find('.modal-Buyer input').val(buyer)
+    modal.find('.modal-Quantity input').val(quantity)
+    
+    modal.find('.modal-Id input').val(id)   
+
+})
