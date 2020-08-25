@@ -1,0 +1,60 @@
+﻿@model IEnumerable<TestDocker.ViewsModels.ProductSoldVM>
+
+
+<div class="container-fluid mt-2 mb-2">
+    <h4>List Product: <span class="badge badge-secondary">Sold</span></h4>
+    <table id="table"
+           data-toggle="table"
+           data-pagination="true"
+           data-search="true"
+           data-toolbar="#toolbar"
+           data-advanced-search="true"
+           data-id-table="advancedTable"
+           data-filter-control="true"
+           data-filter-show-clear="true"
+           data-detail-view="true"
+           data-detail-formatter="detailFormatter"
+           data-show-footer="true">
+        <thead>
+            <tr>
+                <th data-field="brand" data-sortable="true" data-filter-control="select">Brand</th>
+                <th data-field="brandcollection" data-sortable="true" data-filter-control="select">BrandCollection</th>
+                <th data-field="furniturename" data-sortable="true" data-filter-control="select">FurnitureName</th>
+                <th data-field="finishing" data-sortable="true" data-filter-control="select">Finishing</th>
+                <th data-field="furnituretype" data-sortable="true" data-filter-control="select">FurnitureType</th>
+
+                <th data-field="buyername" data-sortable="false">BuyerName
+                </th>
+                <th data-field="giveoutdatatime" data-sortable="true" data-filter-control="datepicker">GiveOutDataTime</th>
+
+                <th data-field="comeprice" data-sortable="false" data-footer-formatter="sumpriceFormatter">ComePrice</th>
+                <th data-field="comesumprice" data-sortable="false" data-footer-formatter="sumpriceFormatter">ComeSumPrice</th>
+
+                <th data-field="giveoutprice" data-sortable="false" data-footer-formatter="sumpriceFormatter">GiveOutPrice</th>
+                <th data-field="giveoutsumprice" data-sortable="false" data-footer-formatter="sumpriceFormatter">GiveOutSumPrice</th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td tabindex="brand">@item.Brand</td>
+                <td tabindex="brandcollection">@item.BrandCollection</td>
+                <td tabindex="furniturename">@item.FurnitureName</td>
+                <td tabindex="finishing">@item.Finishing</td>
+                <td tabindex="furnituretype">@item.FurnitureType</td>
+
+                <td tabindex="buyername">@item.BuyerName</td>
+
+                <td tabindex="giveoutdatatime">@item.GiveOutDataTime</td>
+
+                <td tabindex="comeprice">@item.ComePrice</td>
+                <td tabindex="comesumprice">@item.ComeSumPrice</td>
+
+                <td tabindex="giveoutprice">@item.GiveOutPrice</td>
+                <td tabindex="giveoutsumprice">@item.GiveOutSumPrice</td>
+            </tr>
+        }
+    </table>
+</div>

@@ -69,6 +69,7 @@ namespace TestDocker.Models
         //public decimal GiveOutPrice { get; set; }
         #endregion
 
+
         #region даты
 
         /// <summary>Дата поступления товара на склад</summary>

@@ -17,6 +17,5 @@ namespace TestDocker.Models
 
         /// <summary>Сколько продали по заказу</summary>
         public int Amountsold { get; set; }
-
     }
 }

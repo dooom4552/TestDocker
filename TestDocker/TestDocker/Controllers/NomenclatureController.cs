@@ -16,7 +16,7 @@ using TestDocker.ViewsModels;
 
 namespace TestDocker.Controllers
 {
-    //[Authorize(Roles = "manager, director")]
+    [Authorize(Roles = "manager, director, storekeeper, accountant")]
     public class NomenclatureController : Controller
     {
         readonly UserManager<User> _userManager;
