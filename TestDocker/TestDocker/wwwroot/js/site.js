@@ -323,3 +323,11 @@ $('#acceptprodModal').on('show.bs.modal', function (event) {
     modal.find('.modal-Id input').val(id)   
 
 })
+
+
+
+
+
+
+
+

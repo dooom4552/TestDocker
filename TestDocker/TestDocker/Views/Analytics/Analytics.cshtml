@@ -1,60 +1,76 @@
 ﻿@model IEnumerable<TestDocker.ViewsModels.ProductSoldVM>
 
+    <form asp-controller="Analytics" asp-action="Analytics" method="post">
+        <label for="start">Start date:</label>
 
-<div class="container-fluid mt-2 mb-2">
-    <h4>List Product: <span class="badge badge-secondary">Sold</span></h4>
-    <table id="table"
-           data-toggle="table"
-           data-pagination="true"
-           data-search="true"
-           data-toolbar="#toolbar"
-           data-advanced-search="true"
-           data-id-table="advancedTable"
-           data-filter-control="true"
-           data-filter-show-clear="true"
-           data-detail-view="true"
-           data-detail-formatter="detailFormatter"
-           data-show-footer="true">
-        <thead>
-            <tr>
-                <th data-field="brand" data-sortable="true" data-filter-control="select">Brand</th>
-                <th data-field="brandcollection" data-sortable="true" data-filter-control="select">BrandCollection</th>
-                <th data-field="furniturename" data-sortable="true" data-filter-control="select">FurnitureName</th>
-                <th data-field="finishing" data-sortable="true" data-filter-control="select">Finishing</th>
-                <th data-field="furnituretype" data-sortable="true" data-filter-control="select">FurnitureType</th>
+        <input name="fitstdateTime" type="date" id="start" required
+               value="2020-08-22"
+               min="2020-08-20" max="@DateTime.Now">
 
-                <th data-field="buyername" data-sortable="false">BuyerName
-                </th>
-                <th data-field="giveoutdatatime" data-sortable="true" data-filter-control="datepicker">GiveOutDataTime</th>
+        <label for="start">End date:</label>
 
-                <th data-field="comeprice" data-sortable="false" data-footer-formatter="sumpriceFormatter">ComePrice</th>
-                <th data-field="comesumprice" data-sortable="false" data-footer-formatter="sumpriceFormatter">ComeSumPrice</th>
+        <input name="seconddateTime" type="date" id="start" required               
+               min="2020-08-21" max="@DateTime.Now">
+        <input  type="submit"/>
+    </form>
+    <div class="container-fluid mt-2 mb-2">
+        <h4>List Product: <span class="badge badge-secondary">Sold</span></h4>
 
-                <th data-field="giveoutprice" data-sortable="false" data-footer-formatter="sumpriceFormatter">GiveOutPrice</th>
-                <th data-field="giveoutsumprice" data-sortable="false" data-footer-formatter="sumpriceFormatter">GiveOutSumPrice</th>
-            </tr>
-        </thead>
+        <table id="table1"
+               data-toggle="table"
+               data-pagination="true"
+               data-search="true"
+               data-show-columns="true"
+               data-show-toggle="true"
+               data-advanced-search="true"
+               data-id-table="advancedTable"
+               data-filter-control="true"
+               data-filter-show-clear="true"
+               data-detail-view="true"
+               data-detail-formatter="detailFormatter"
+               data-show-footer="true">
+            <thead>
+                <tr>
+                    <th data-field="brand" data-sortable="true" data-filter-control="select">Brand</th>
+                    <th data-field="brandcollection" data-sortable="true" data-filter-control="select">BrandCollection</th>
+                    <th data-field="furniturename" data-sortable="true" data-filter-control="select">FurnitureName</th>
+                    <th data-field="finishing" data-sortable="true" data-filter-control="select">Finishing</th>
+                    <th data-field="furnituretype" data-sortable="true" data-filter-control="select">FurnitureType</th>
 
-        @foreach (var item in Model)
-        {
+                    <th data-field="buyername" data-sortable="true" data-filter-control="select">BuyerName</th>
 
-            <tr>
-                <td tabindex="brand">@item.Brand</td>
-                <td tabindex="brandcollection">@item.BrandCollection</td>
-                <td tabindex="furniturename">@item.FurnitureName</td>
-                <td tabindex="finishing">@item.Finishing</td>
-                <td tabindex="furnituretype">@item.FurnitureType</td>
+                    <th data-field="giveoutdatatime" data-filter-control="select">GiveoutDataTime</th>
+                    <th data-field="comeprice" data-sortable="false">comeprice</th>
+                    <th data-field="comesumprice" data-sortable="false" data-footer-formatter="sumpriceFormatter">comesumprice</th>
+                    <th data-field="giveoutprice" data-sortable="false">giveoutprice</th>
+                    <th data-field="giveoutsumprice" data-sortable="false" data-footer-formatter="sumpriceFormatter">giveoutsumprice</th>
+                </tr>
 
-                <td tabindex="buyername">@item.BuyerName</td>
+            </thead>
 
-                <td tabindex="giveoutdatatime">@item.GiveOutDataTime</td>
+            @foreach (var item in Model)
+            {
 
-                <td tabindex="comeprice">@item.ComePrice</td>
-                <td tabindex="comesumprice">@item.ComeSumPrice</td>
+                <tr>
+                    <td tabindex="brand">@item.Brand</td>
+                    <td tabindex="brandcollection">@item.BrandCollection</td>
+                    <td tabindex="furniturename">@item.FurnitureName</td>
+                    <td tabindex="finishing">@item.Finishing</td>
+                    <td tabindex="furnituretype">@item.FurnitureType</td>
 
-                <td tabindex="giveoutprice">@item.GiveOutPrice</td>
-                <td tabindex="giveoutsumprice">@item.GiveOutSumPrice</td>
-            </tr>
-        }
-    </table>
-</div>
+                    <td tabindex="buyername">@item.BuyerName</td>
+
+                    <td tabindex="giveoutprice">@item.GiveOutDataTime</td>
+
+                    <td tabindex="comeprice">@item.ComePrice</td>
+                    <td tabindex="comesumprice">@item.ComeSumPrice</td>
+
+                    <td tabindex="giveoutprice">@item.GiveOutPrice</td>
+                    <td tabindex="giveoutsumprice">@item.GiveOutSumPrice</td>
+                </tr>
+
+            }
+        </table>
+    </div>
+
+
