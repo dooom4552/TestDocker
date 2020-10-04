@@ -13,13 +13,13 @@ namespace TestDocker.Services
 
        public static string GetName(List<T> db, int id)
         {
-            return db.FirstOrDefault(a => a.Id == id).Name; ;
+            return db.FirstOrDefault(a => a.Id == id).Name;
         }
 
 
         public async static Task<string> GetNameAsync(List<T> db, int id)
         {
-           return await Task.Run(() => GetName(db, id));
+                return await Task.Run(() => GetName(db, id));
         }
     }
 }

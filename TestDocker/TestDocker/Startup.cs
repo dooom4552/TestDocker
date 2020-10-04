@@ -16,6 +16,8 @@ using TestDocker.Models;
 using System.Globalization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
 
 namespace TestDocker
 {
@@ -62,6 +64,9 @@ namespace TestDocker
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            
+
+
             var supportedCultures = new[]
             {
                 new CultureInfo("en-US"),
@@ -90,10 +95,20 @@ namespace TestDocker
 
             app.UseEndpoints(endpoints =>
             {
+                var loggerFactory = LoggerFactory.Create(builder =>
+                {
+                    builder.AddConsole();
+                });
+
+                ILogger logger = loggerFactory.CreateLogger<Startup>();
+
+                logger.LogInformation("Requested Path: {0}");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
         }
     }
 }
