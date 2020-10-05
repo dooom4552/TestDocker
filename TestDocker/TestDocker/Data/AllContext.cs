@@ -35,6 +35,7 @@ namespace TestDocker.Data
                     new Brand {Id=1, Name="Fratelli Barri"}
                 }
                 );
+            modelBuilder.Entity<Brand>().HasIndex(b => new { b.Id }).IsUnique(true);
 
             modelBuilder.Entity<BrandCollection>().HasData(
                 new BrandCollection[]
