@@ -11,25 +11,39 @@ namespace deltest
     {
         static void Main(string[] args)
         {
-
-            Thread thread = new Thread(new ThreadStart(MyMetod));
-            thread.Start();
-
-            for (int i = 0; i < 10; i++)
+            Car Taz = new Car()
             {
-                Console.WriteLine($"{i}MyMetod1");
-                Thread.Sleep(50);
-            }
-            static void MyMetod()
+                MarkName = "ВАЗ",
+                ModelName = "Priora",
+                MaxSpeed = 180,
+                weight = 900
+            };
+            Car Chevy = new Car()
             {
-                for(int i =0; i<10; i++)
-                {
-                    Console.WriteLine($"{i}MyMetod2");
-                    Thread.Sleep(50);
-                }
-                
-            }
+                MarkName="Chevrolet",
+                ModelName="Rezzo",
+                MaxSpeed=170,
+                weight = 1400
+            }; 
+            Car Opel = new Car()
+            {
+                MarkName="Opel",
+                ModelName="Astra",
+                MaxSpeed=200,
+                weight =1300
+            };
+            Car[] cars = new Car[]
+            {
+                Taz,
+                Chevy,
+                Opel
+            };
 
+            Array.Sort(cars,new CarCompere());
+            foreach(var car in cars)
+            {
+                Console.WriteLine($"MarkName: {car.MarkName} ModelName: {car.ModelName} MaxSpeed:{car.MaxSpeed} weight: {car.weight}");
+            }
         }
     }
 }
